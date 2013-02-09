@@ -5,6 +5,7 @@
     },
     "license": "MIT",
     "require": {
+        "ext-sqlite": "*",
         "silex/silex": "1.0.*@dev",
         "doctrine/dbal": "2.3.*",
         "zendframework/zend-validator": "2.0.*",
