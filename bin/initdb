@@ -1,0 +1,12 @@
+#!/usr/bin/env php
+<?php
+
+require_once __DIR__ . '/../common/appcommon.php';
+
+$app['db']->executeUpdate(<<<EOT
+CREATE TABLE barcodes (
+    uuid VARCHAR(36) PRIMARY KEY,
+    barcode VARCHAR(18) UNIQUE
+)
+EOT
+);
