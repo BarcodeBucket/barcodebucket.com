@@ -13,6 +13,10 @@ $app['controllers']
     ->assert('uuid', '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
 ;
 
+$app->get('/', function() use ($app) {
+    return $app['twig']->render('index.twig');
+});
+
 $app->get('/barcode/{gtin}', function($gtin) use ($app) {
     $gtin = sprintf('%014d', $gtin);
     $validator = new Barcode('GTIN14');

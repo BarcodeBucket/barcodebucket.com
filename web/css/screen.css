@@ -1,0 +1,38 @@
+h1, h2, h3 {
+    text-align: center;
+}
+
+h1 {
+    font-size: xx-large; 
+}
+.error {
+    font-weight: bold;
+    color: red;
+}
+.home-p {
+    text-align: center;
+    margin: 10px;
+}
+
+#title {
+    margin: 20px;
+}
+
+#barcode {
+    width: 400px;
+}
+
+#barcode-list {
+    width: 425px;
+    margin: auto;
+    border: 1px solid;
+    padding: 10px;
+}
+
+form {
+    text-align: center
+}
+
+input {
+    height: 30px;
+}
