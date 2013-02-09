@@ -6,9 +6,15 @@ use Zend\Validator\Barcode;
 require_once __DIR__.'/../common/appcommon.php';
 
 $app->get('/barcode/{barcode}', function($barcode) use ($app) {
-    $validator = new Barcode('Ean13');
+    $barcode = sprintf('%014d', $barcode);
+    
+    return $app->redirect('/barcode/'.$barcode);
+})->assert('barcode', '[0-9]{8,13}');
+
+$app->get('/barcode/{barcode}', function($barcode) use ($app) {
+    $validator = new Barcode('GTIN14');
     if(!$validator->isValid($barcode)) {
-        throw new NotFoundHttpException('Invalid EAN');
+        throw new NotFoundHttpException('Invalid barcode');
     }
     
     $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
@@ -26,7 +32,7 @@ $app->get('/barcode/{barcode}', function($barcode) use ($app) {
     $response = $app
         ->json(array(
             'uuid' => $uuid,
-            'barcode' => $barcode
+            'gtin' => $barcode
         ))
     ;
     
@@ -34,12 +40,7 @@ $app->get('/barcode/{barcode}', function($barcode) use ($app) {
     $response->setSharedMaxAge(3600 * 24 * 30);
     
     return $response;
-})->assert('barcode', '[0-9]{13,18}');
-
-$app->get('/barcode', function() use ($app) {
-    $data = $app['db']->fetchAll('SELECT * FROM barcodes');
-    return $app->json($data);
-});
+})->assert('barcode', '[0-9]{14}');
 
 $app['debug'] = in_array($_SERVER['REMOTE_ADDR'], array ('127.0.0.1'));
 $app->run();

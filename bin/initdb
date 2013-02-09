@@ -5,8 +5,8 @@ require_once __DIR__ . '/../common/appcommon.php';
 
 $app['db']->executeUpdate(<<<EOT
 CREATE TABLE barcodes (
-    uuid VARCHAR(36) PRIMARY KEY,
-    barcode VARCHAR(18) UNIQUE
+    uuid CHAR(36) PRIMARY KEY,
+    barcode CHAR(14) UNIQUE
 )
 EOT
 );
