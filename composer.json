@@ -3,6 +3,7 @@
     "autoload": {
         "psr-0": { "BarcodeBucket": "src/" }
     },
+    "license": "MIT",
     "require": {
         "silex/silex": "1.0.*@dev",
         "doctrine/dbal": "2.3.*",
