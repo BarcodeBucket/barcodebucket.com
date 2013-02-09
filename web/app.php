@@ -5,42 +5,47 @@ use Zend\Validator\Barcode;
 
 require_once __DIR__.'/../common/appcommon.php';
 
-$app->get('/barcode/{barcode}', function($barcode) use ($app) {
-    $barcode = sprintf('%014d', $barcode);
-    
-    return $app->redirect('/barcode/'.$barcode);
-})->assert('barcode', '[0-9]{8,13}');
+$app['controllers']
+    ->assert('uuid', '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
+;
 
-$app->get('/barcode/{barcode}', function($barcode) use ($app) {
+$app->get('/barcode/{gtin}', function($gtin) use ($app) {
+    $gtin = sprintf('%014d', $gtin);
+    
+    return $app->redirect('/barcode/'.$gtin);
+})->assert('gtin', '[0-9]{8,13}');
+
+$app->get('/barcode/{gtin}', function($gtin) use ($app) {
     $validator = new Barcode('GTIN14');
-    if(!$validator->isValid($barcode)) {
+    if(!$validator->isValid($gtin)) {
         throw new NotFoundHttpException('Invalid barcode');
     }
     
     $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
-    $uuid = $app['db']->fetchColumn($sql, array($barcode));
+    $uuid = $app['db']->fetchColumn($sql, array($gtin));
     
     if(false === $uuid) {
         $app['db']
             ->executeUpdate('INSERT INTO barcodes (uuid, barcode) VALUES (?,?)', array(
                 $uuid = trim(`uuidgen -r`),
-                $barcode
+                $gtin
             ))
         ;
     }
 
-    $response = $app
-        ->json(array(
-            'uuid' => $uuid,
-            'gtin' => $barcode
-        ))
-    ;
+   return barcode_response($app, $uuid, $gtin);
+})->assert('gtin', '[0-9]{14}');
+
+$app->get('/barcode/{uuid}', function($uuid) use ($app) {
+    $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
+    $gtin = $app['db']->fetchColumn($sql, array($uuid));
     
-    $response->setPublic();
-    $response->setSharedMaxAge(3600 * 24 * 30);
+    if(false === $gtin) {
+        throw new NotFoundHttpException('UUID not found');
+    }
     
-    return $response;
-})->assert('barcode', '[0-9]{14}');
+    return barcode_response($app, $uuid, $gtin);
+});
 
 $app['debug'] = in_array($_SERVER['REMOTE_ADDR'], array ('127.0.0.1'));
 $app->run();
