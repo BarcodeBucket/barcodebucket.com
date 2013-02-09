@@ -1,5 +1,5 @@
 {
-    "hash": "9517fe6ea964b30f25d114af2f3e6431",
+    "hash": "010cd22e9979922cbc21ffad5f6012a4",
     "packages": [
         {
             "name": "doctrine/common",
@@ -465,9 +465,211 @@
             ],
             "description": "Symfony Routing Component",
             "homepage": "http://symfony.com"
+        },
+        {
+            "name": "zendframework/zend-filter",
+            "version": "2.0.7",
+            "target-dir": "Zend/Filter",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendFilter.git",
+                "reference": "release-2.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendFilter/zipball/release-2.0.7",
+                "reference": "release-2.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-crypt": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-i18n": "Zend\\I18n component",
+                "zendframework/zend-validator": "Zend\\Validator component",
+                "zendframework/zend-crypt": "Zend\\Crypt component"
+            },
+            "time": "2013-01-25 16:31:35",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Filter\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed data filters",
+            "keywords": [
+                "zf2",
+                "filter"
+            ]
+        },
+        {
+            "name": "zendframework/zend-i18n",
+            "version": "2.0.7",
+            "target-dir": "Zend/I18n",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendI18n.git",
+                "reference": "release-2.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendI18n/zipball/release-2.0.7",
+                "reference": "release-2.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "ext-intl": "*",
+                "zendframework/zend-filter": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "time": "2013-01-22 20:50:52",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\I18n\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "i18n",
+                "zf2"
+            ]
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.0.7",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "release-2.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendServiceManager/zipball/release-2.0.7",
+                "reference": "release-2.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "time": "2013-01-29 20:11:45",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "zf2",
+                "servicemanager"
+            ]
+        },
+        {
+            "name": "zendframework/zend-stdlib",
+            "version": "2.0.7",
+            "target-dir": "Zend/Stdlib",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendStdlib.git",
+                "reference": "release-2.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/release-2.0.7",
+                "reference": "release-2.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "pecl-weakref": "Implementation of weak references for Stdlib\\CallbackHandler"
+            },
+            "time": "2013-01-22 20:50:52",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Stdlib\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "keywords": [
+                "zf2",
+                "stdlib"
+            ]
+        },
+        {
+            "name": "zendframework/zend-validator",
+            "version": "2.0.7",
+            "target-dir": "Zend/Validator",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendValidator.git",
+                "reference": "release-2.0.7"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/release-2.0.7",
+                "reference": "release-2.0.7",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-i18n": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-math": "self.version"
+            },
+            "suggest": {
+                "zendframework/zend-db": "Zend\\Db component",
+                "zendframework/zend-math": "Zend\\Math component"
+            },
+            "time": "2013-01-25 16:14:33",
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Validator\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a set of commonly needed validators",
+            "keywords": [
+                "validator",
+                "zf2"
+            ]
         }
     ],
-    "packages-dev": null,
+    "packages-dev": [
+
+    ],
     "aliases": [
 
     ],

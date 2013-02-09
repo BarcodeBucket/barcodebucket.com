@@ -1,10 +1,13 @@
 <?php
 
+use Silex\Application;
+use Silex\Provider\DoctrineServiceProvider;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
-$app = new Silex\Application();
+$app = new Application();
 
-$app->register(new Silex\Provider\DoctrineServiceProvider(), array(
+$app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
         'driver'   => 'pdo_sqlite',
         'path'     => __DIR__.'/../db/app.db',
