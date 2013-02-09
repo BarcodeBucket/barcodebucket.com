@@ -1,0 +1,10 @@
+{
+    "name": "barcodebucket/simple-service",
+    "autoload": {
+        "psr-0": { "BarcodeBucket": "src/" }
+    },
+    "require": {
+        "silex/silex": "1.0.*@dev",
+        "doctrine/dbal": "2.3.*"
+    }
+}
