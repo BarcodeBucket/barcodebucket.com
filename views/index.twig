@@ -1,25 +1,13 @@
-<!DOCTYPE HTML>
-<html>
-  <head>
-    <title>BarcodeBucket.com</title>
-    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="css/screen.css"/>
-  </head>
-  <body>
-    <a href="https://github.com/BarcodeBucket/barcodebucket.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
-    <div id="title"><img alt="BarcodeBucket.com" src="images/logo.png"/></div>
+{% extends 'base.twig' %}  
+{% block content %}
+  <a href="https://github.com/BarcodeBucket/barcodebucket.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+  <div class="hero-unit">
+    <h1>Validate and store your barcodes</h1>
+    <p>converting them to the leading GTIN-14 standard</p>
     <form id="home-form">
-      <input type="text" name="barcode" id="barcode" />
-      <input type="submit" value="Go!"/>
+      <input type="text" name="barcode" id="barcode" placeholder="Enter a EAN or UPC barcode"/>
     </form>
-    <br style="clear: both;"/>
-    <p class="home-p">Make your bucket grow :)<p>
     <ul id="barcode-list"></ul>
-    <p class="home-p">BarcodeBucket validates your barcodes (UPC, EAN)<br/> converting them to GTIN-14 standard.</p>
-    <script src="//code.jquery.com/jquery-1.9.1.min.js"></script>
-    <script src="//yandex.st/dojo/1.8.3/dojo/dojo.js"></script> 
-    <script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
-    <script src="js/home.js"></script>
-  </body>
-</html>
+    <p>Permanent storage feature coming soon...<p>
+  </div>
+{% endblock content %}
