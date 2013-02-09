@@ -11,11 +11,6 @@ $app['controllers']
 
 $app->get('/barcode/{gtin}', function($gtin) use ($app) {
     $gtin = sprintf('%014d', $gtin);
-    
-    return $app->redirect('/barcode/'.$gtin);
-})->assert('gtin', '[0-9]{8,13}');
-
-$app->get('/barcode/{gtin}', function($gtin) use ($app) {
     $validator = new Barcode('GTIN14');
     if(!$validator->isValid($gtin)) {
         throw new NotFoundHttpException('Invalid barcode');
@@ -32,9 +27,9 @@ $app->get('/barcode/{gtin}', function($gtin) use ($app) {
             ))
         ;
     }
-
-   return barcode_response($app, $uuid, $gtin);
-})->assert('gtin', '[0-9]{14}');
+    
+    return $app->redirect('/barcode/'.$uuid);
+})->assert('gtin', '[0-9]{8,14}');
 
 $app->get('/barcode/{uuid}', function($uuid) use ($app) {
     $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
