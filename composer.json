@@ -6,10 +6,10 @@
     "license": "MIT",
     "require": {
         "ext-sqlite3": "*",
-        "silex/silex": "1.0.*@dev",
-        "doctrine/dbal": "2.3.*",
-        "zendframework/zend-validator": "2.0.*",
-        "twig/twig": ">=1.8,<2.0-dev",
-        "symfony/twig-bridge": "2.1.*"
+        "silex/silex": "~1.0",
+        "doctrine/dbal": "~2.3",
+        "zendframework/zend-validator": "~2.0",
+        "twig/twig": "~1.8",
+        "symfony/twig-bridge": "~2.1"
     }
 }
