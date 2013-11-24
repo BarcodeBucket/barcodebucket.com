@@ -14,3 +14,7 @@ $app->register(new DoctrineServiceProvider(), array(
         'path'     => __DIR__.'/../db/app.sqlite',
     ),
 ));
+
+$app['data.barcode'] = $app->share(function($app) {
+    return new \BarcodeBucket\Data\BarcodeService($app['db']);
+});
