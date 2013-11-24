@@ -21,7 +21,7 @@ $app->register(new Silex\Provider\TwigServiceProvider(), array(
 ));
 
 $app['uuid.generator'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Data\LinuxUUIDGenerator();
+    return new \BarcodeBucket\Data\RhumsaaUUIDGenerator();
 });
 
 $app['barcode.service'] = $app->share(function ($app) {
