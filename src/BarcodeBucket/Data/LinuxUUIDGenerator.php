@@ -13,6 +13,6 @@ class LinuxUUIDGenerator implements UUIDGeneratorInterface
      */
     public function generate()
     {
-        return `uuidgen -r`;
+        return trim(`uuidgen -r`);
     }
 }

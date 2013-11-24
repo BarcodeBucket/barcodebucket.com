@@ -15,6 +15,14 @@ $app->register(new DoctrineServiceProvider(), array(
     ),
 ));
 
+$app['data.uuid'] = $app->share(function ($app) {
+    return new \BarcodeBucket\Data\LinuxUUIDGenerator();
+});
+
 $app['data.barcode'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Data\BarcodeService($app['db']);
+    return new \BarcodeBucket\Data\BarcodeService($app['db'], $app['data.uuid']);
+});
+
+$app['validator.barcode'] = $app->share(function ($app) {
+    return new \Zend\Validator\Barcode('GTIN14');
 });
