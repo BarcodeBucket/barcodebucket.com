@@ -12,6 +12,9 @@ use Zend\Validator\Barcode;
  */
 class BarcodeController
 {
+    /**
+     * @var \Silex\Application
+     */
     private $application;
 
     /**
