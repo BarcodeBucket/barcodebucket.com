@@ -4,7 +4,6 @@ use Silex\Application;
 use Silex\Provider\DoctrineServiceProvider;
 
 require_once __DIR__ . '/../vendor/autoload.php';
-require_once __DIR__ . '/functions.php';
 
 $app = new Application();
 
@@ -15,14 +14,20 @@ $app->register(new DoctrineServiceProvider(), array(
     ),
 ));
 
-$app['data.uuid'] = $app->share(function ($app) {
+$app->register(new Silex\Provider\ServiceControllerServiceProvider());
+
+$app['uuid.generator'] = $app->share(function ($app) {
     return new \BarcodeBucket\Data\LinuxUUIDGenerator();
 });
 
-$app['data.barcode'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Data\BarcodeService($app['db'], $app['data.uuid']);
+$app['barcode.service'] = $app->share(function ($app) {
+    return new \BarcodeBucket\Data\BarcodeService($app['db'], $app['uuid.generator']);
 });
 
-$app['validator.barcode'] = $app->share(function ($app) {
+$app['barcode.validator'] = $app->share(function ($app) {
     return new \Zend\Validator\Barcode('GTIN14');
+});
+
+$app['barcode.controller'] = $app->share(function ($app) {
+    return new \BarcodeBucket\Controller\BarcodeController($app, $app['barcode.service'], $app['barcode.validator']);
 });

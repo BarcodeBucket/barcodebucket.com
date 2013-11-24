@@ -1,6 +1,5 @@
 <?php
 
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Zend\Validator\Barcode;
 
 require_once __DIR__.'/../common/appcommon.php';
@@ -17,28 +16,8 @@ $app->get('/', function () use ($app) {
     return $app['twig']->render('index.twig');
 });
 
-$app->get('/barcode/{gtin}', function ($gtin) use ($app) {
-    $gtin = sprintf('%014d', $gtin);
-
-    if (!$app['validator.barcode']->isValid($gtin)) {
-        throw new NotFoundHttpException('Invalid barcode');
-    }
-
-    $uuid = $app['data.barcode']->upsert($gtin);
-
-    return $app->redirect('/barcode/'.$uuid);
-})->assert('gtin', '[0-9]{8,14}');
-
-$app->get('/barcode/{uuid}', function ($uuid) use ($app) {
-    $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
-    $gtin = $app['db']->fetchColumn($sql, array($uuid));
-
-    if (false === $gtin) {
-        throw new NotFoundHttpException('UUID not found');
-    }
-
-    return barcode_response($app, $uuid, $gtin);
-});
+$app->get('/barcode/{gtin}', 'barcode.controller:gtinAction')->assert('gtin', '[0-9]{8,14}');
+$app->get('/barcode/{uuid}', 'barcode.controller:uuidAction');
 
 $app['debug'] = in_array($_SERVER['REMOTE_ADDR'], array ('127.0.0.1'));
 $app->run();

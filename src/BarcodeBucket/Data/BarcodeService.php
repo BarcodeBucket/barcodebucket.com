@@ -28,6 +28,13 @@ class BarcodeService
         $this->UUIDGenerator = $UUIDGenerator;
     }
 
+    public function getBarcode($uuid)
+    {
+        $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
+
+        return $this->db->fetchColumn($sql, array($uuid));
+    }
+
     public function upsert($gtin)
     {
         $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
