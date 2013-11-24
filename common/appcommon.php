@@ -16,6 +16,10 @@ $app->register(new DoctrineServiceProvider(), array(
 
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
+$app->register(new Silex\Provider\TwigServiceProvider(), array(
+    'twig.path' => __DIR__.'/../views',
+));
+
 $app['uuid.generator'] = $app->share(function ($app) {
     return new \BarcodeBucket\Data\LinuxUUIDGenerator();
 });

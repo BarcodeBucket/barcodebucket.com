@@ -2,10 +2,6 @@
 
 $app = require_once __DIR__.'/../common/appcommon.php';
 
-$app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
-));
-
 $app['controllers']
     ->assert('uuid', '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}')
 ;
