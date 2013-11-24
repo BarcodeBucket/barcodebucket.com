@@ -15,6 +15,6 @@ $app->register(new DoctrineServiceProvider(), array(
     ),
 ));
 
-$app['data.barcode'] = $app->share(function($app) {
+$app['data.barcode'] = $app->share(function ($app) {
     return new \BarcodeBucket\Data\BarcodeService($app['db']);
 });
