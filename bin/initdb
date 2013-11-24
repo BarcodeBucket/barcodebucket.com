@@ -1,7 +1,7 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../common/appcommon.php';
+$app = require_once __DIR__ . '/../src/app.php';
 
 $app['db']->executeUpdate(<<<EOT
 CREATE TABLE barcodes (
