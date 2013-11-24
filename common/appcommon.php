@@ -31,3 +31,5 @@ $app['barcode.validator'] = $app->share(function ($app) {
 $app['barcode.controller'] = $app->share(function ($app) {
     return new \BarcodeBucket\Controller\BarcodeController($app, $app['barcode.service'], $app['barcode.validator']);
 });
+
+return $app;

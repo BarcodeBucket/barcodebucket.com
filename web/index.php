@@ -1,8 +1,6 @@
 <?php
 
-use Zend\Validator\Barcode;
-
-require_once __DIR__.'/../common/appcommon.php';
+$app = require_once __DIR__.'/../common/appcommon.php';
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
     'twig.path' => __DIR__.'/../views',
@@ -19,5 +17,7 @@ $app->get('/', function () use ($app) {
 $app->get('/barcode/{gtin}', 'barcode.controller:gtinAction')->assert('gtin', '[0-9]{8,14}');
 $app->get('/barcode/{uuid}', 'barcode.controller:uuidAction');
 
-$app['debug'] = in_array($_SERVER['REMOTE_ADDR'], array ('127.0.0.1'));
+//$app['debug'] = in_array($_SERVER['REMOTE_ADDR'], array ('127.0.0.1'));
 $app->run();
+
+return $app;
