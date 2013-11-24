@@ -10,9 +10,9 @@ function barcode_response(Application $app, $uuid, $gtin)
             'gtin' => $gtin
         ))
     ;
-    
+
     $response->setPublic();
     $response->setSharedMaxAge(3600 * 24 * 30);
-    
+
     return $response;
 }

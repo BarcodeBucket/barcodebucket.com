@@ -20,14 +20,14 @@ $app->get('/', function() use ($app) {
 $app->get('/barcode/{gtin}', function($gtin) use ($app) {
     $gtin = sprintf('%014d', $gtin);
     $validator = new Barcode('GTIN14');
-    if(!$validator->isValid($gtin)) {
+    if (!$validator->isValid($gtin)) {
         throw new NotFoundHttpException('Invalid barcode');
     }
-    
+
     $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
     $uuid = $app['db']->fetchColumn($sql, array($gtin));
-    
-    if(false === $uuid) {
+
+    if (false === $uuid) {
         $app['db']
             ->executeUpdate('INSERT INTO barcodes (uuid, barcode) VALUES (?,?)', array(
                 $uuid = trim(`uuidgen -r`),
@@ -35,18 +35,18 @@ $app->get('/barcode/{gtin}', function($gtin) use ($app) {
             ))
         ;
     }
-    
+
     return $app->redirect('/barcode/'.$uuid);
 })->assert('gtin', '[0-9]{8,14}');
 
 $app->get('/barcode/{uuid}', function($uuid) use ($app) {
     $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
     $gtin = $app['db']->fetchColumn($sql, array($uuid));
-    
-    if(false === $gtin) {
+
+    if (false === $gtin) {
         throw new NotFoundHttpException('UUID not found');
     }
-    
+
     return barcode_response($app, $uuid, $gtin);
 });
 
