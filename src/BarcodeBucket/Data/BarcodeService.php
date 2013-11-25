@@ -45,15 +45,15 @@ class BarcodeService
 
     public function upsert($gtin)
     {
+        $this
+            ->db
+            ->beginTransaction();
+        ;
+
         $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
         $uuid = $this->db->fetchColumn($sql, array($gtin));
 
         if (false === $uuid) {
-            $this
-                ->db
-                ->beginTransaction();
-            ;
-
             $this
                 ->db
                 ->executeUpdate('INSERT INTO barcodes (uuid, barcode) VALUES (?,?)', array(
@@ -63,12 +63,12 @@ class BarcodeService
             ;
 
             $this->dispatcher->dispatch(new BarcodeCreatedEvent($uuid, $gtin));
-
-            $this
-                ->db
-                ->commit()
-            ;
         }
+
+        $this
+            ->db
+            ->commit()
+        ;
 
         return $uuid;
     }
