@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/barcodebucket-core.git",
-                "reference": "5d2a261c11ac313ebd952c706885567d3c3469f4"
+                "reference": "301169a8795105ffea4ed3f40c94ec3762b89d6b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/5d2a261c11ac313ebd952c706885567d3c3469f4",
-                "reference": "5d2a261c11ac313ebd952c706885567d3c3469f4",
+                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/301169a8795105ffea4ed3f40c94ec3762b89d6b",
+                "reference": "301169a8795105ffea4ed3f40c94ec3762b89d6b",
                 "shasum": ""
             },
             "require-dev": {
@@ -28,6 +28,7 @@
                     "": "src/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
             ],
@@ -38,11 +39,7 @@
                 }
             ],
             "description": "BarcodeBucket core classes",
-            "support": {
-                "source": "https://github.com/BarcodeBucket/barcodebucket-core/tree/master",
-                "issues": "https://github.com/BarcodeBucket/barcodebucket-core/issues"
-            },
-            "time": "2013-11-25 12:27:39"
+            "time": "2013-11-25 12:43:08"
         },
         {
             "name": "doctrine/annotations",
