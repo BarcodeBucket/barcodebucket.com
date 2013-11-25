@@ -3,6 +3,7 @@
 namespace BarcodeBucket\Data;
 
 use BarcodeBucket\Event\BarcodeCreatedEvent;
+use BarcodeBucket\Model\Barcode;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
@@ -62,7 +63,7 @@ class BarcodeService
                 ))
             ;
 
-            $this->dispatcher->dispatch('barcode.created', new BarcodeCreatedEvent($uuid, $gtin));
+            $this->dispatcher->dispatch('barcode.created', new BarcodeCreatedEvent(new Barcode($uuid, $gtin)));
         }
 
         $this

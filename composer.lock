@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "1bf6aad762b7e08dc0e147005679a088",
+    "hash": "6e3d7b392275cb0fd284e2acf1386f28",
     "packages": [
         {
             "name": "barcodebucket/barcodebucket-core",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/barcodebucket-core.git",
-                "reference": "f9e48665bd3d4096c504adbcd3acdea4c1df86fc"
+                "reference": "5d2a261c11ac313ebd952c706885567d3c3469f4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/f9e48665bd3d4096c504adbcd3acdea4c1df86fc",
-                "reference": "f9e48665bd3d4096c504adbcd3acdea4c1df86fc",
+                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/5d2a261c11ac313ebd952c706885567d3c3469f4",
+                "reference": "5d2a261c11ac313ebd952c706885567d3c3469f4",
                 "shasum": ""
             },
             "require-dev": {
@@ -42,7 +42,7 @@
                 "source": "https://github.com/BarcodeBucket/barcodebucket-core/tree/master",
                 "issues": "https://github.com/BarcodeBucket/barcodebucket-core/issues"
             },
-            "time": "2013-11-25 12:12:26"
+            "time": "2013-11-25 12:27:39"
         },
         {
             "name": "doctrine/annotations",

@@ -1,6 +1,7 @@
 <?php
 namespace BarcodeBucket\Event;
 
+use BarcodeBucket\Model\Barcode;
 use Symfony\Component\EventDispatcher\Event;
 
 /**
@@ -9,39 +10,13 @@ use Symfony\Component\EventDispatcher\Event;
  */
 class BarcodeCreatedEvent extends Event
 {
-    /**
-     * @var string
-     */
-    private $uuid;
+    private $barcode;
 
     /**
-     * @var string
+     * @param Barcode $barcode
      */
-    private $gtin;
-
-    /**
-     * @param string $uuid
-     * @param string $gtin
-     */
-    public function __construct($uuid, $gtin)
+    public function __construct(Barcode $barcode)
     {
-        $this->uuid = $uuid;
-        $this->gtin = $gtin;
-    }
-
-    /**
-     * @return string
-     */
-    public function getGtin()
-    {
-        return $this->gtin;
-    }
-
-    /**
-     * @return string
-     */
-    public function getUuid()
-    {
-        return $this->uuid;
+        $this->barcode = $barcode;
     }
 }
