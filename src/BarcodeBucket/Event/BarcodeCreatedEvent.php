@@ -3,10 +3,20 @@ namespace BarcodeBucket\Event;
 
 use Symfony\Component\EventDispatcher\Event;
 
+/**
+ * Class BarcodeCreatedEvent
+ * @package BarcodeBucket\Event
+ */
 class BarcodeCreatedEvent extends Event
 {
+    /**
+     * @var string
+     */
     private $uuid;
 
+    /**
+     * @var string
+     */
     private $gtin;
 
     /**
