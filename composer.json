@@ -20,5 +20,11 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "http://github.com/UniversiBO/smarty"
+        }
+    ]
 }
