@@ -29,7 +29,7 @@ class BarcodeControllerTest extends WebTestCase
         $client->request('GET', '/barcode/9780321834577');
 
         $response = $client->getResponse();
-        $this->assertTrue($response->isRedirect(), 'Should be redirected');
+        $this->assertTrue($response->isRedirection(), 'Should be redirected');
         $this->assertRegExp(self::UUID_REGEXP, $response->headers->get('Location'));
 
         $client->followRedirect();
