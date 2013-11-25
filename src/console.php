@@ -18,6 +18,12 @@ CREATE TABLE barcodes (
 )
 EOT
         );
+    });
+$console
+    ->register('database:empty')
+    ->setDescription('Deletes all data from database')
+    ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
+        $app['db']->executeUpdate('DELETE FROM barcodes');
     })
 ;
 

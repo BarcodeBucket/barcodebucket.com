@@ -27,8 +27,6 @@ class BarcodeCreatedEvent extends Event
     {
         $this->uuid = $uuid;
         $this->gtin = $gtin;
-
-        $this->setName('barcode.created');
     }
 
     /**

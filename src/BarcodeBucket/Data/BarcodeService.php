@@ -62,7 +62,7 @@ class BarcodeService
                 ))
             ;
 
-            $this->dispatcher->dispatch(new BarcodeCreatedEvent($uuid, $gtin));
+            $this->dispatcher->dispatch('barcode.created', new BarcodeCreatedEvent($uuid, $gtin));
         }
 
         $this
