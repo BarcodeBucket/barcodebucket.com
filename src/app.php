@@ -25,7 +25,7 @@ $app['uuid.generator'] = $app->share(function ($app) {
 });
 
 $app['barcode.service'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Data\BarcodeService($app['db'], $app['uuid.generator']);
+    return new \BarcodeBucket\Data\BarcodeService($app['dispatcher'], $app['db'], $app['uuid.generator']);
 });
 
 $app['barcode.validator'] = $app->share(function ($app) {

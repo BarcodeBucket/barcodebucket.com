@@ -2,10 +2,17 @@
 
 namespace BarcodeBucket\Data;
 
+use BarcodeBucket\Event\BarcodeCreatedEvent;
 use Doctrine\DBAL\Connection;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class BarcodeService
 {
+    /**
+     * @var \Symfony\Component\EventDispatcher\EventDispatcherInterface
+     */
+    private $dispatcher;
+
     /**
      * @var \Doctrine\DBAL\Connection
      */
@@ -22,8 +29,9 @@ class BarcodeService
      * @param Connection             $db
      * @param UUIDGeneratorInterface $UUIDGenerator
      */
-    public function __construct(Connection $db, UUIDGeneratorInterface $UUIDGenerator)
+    public function __construct(EventDispatcherInterface $dispatcher, Connection $db, UUIDGeneratorInterface $UUIDGenerator)
     {
+        $this->dispatcher = $dispatcher;
         $this->db = $db;
         $this->UUIDGenerator = $UUIDGenerator;
     }
@@ -43,10 +51,22 @@ class BarcodeService
         if (false === $uuid) {
             $this
                 ->db
+                ->beginTransaction();
+            ;
+
+            $this
+                ->db
                 ->executeUpdate('INSERT INTO barcodes (uuid, barcode) VALUES (?,?)', array(
                     $uuid = $this->UUIDGenerator->generate(),
                     $gtin
                 ))
+            ;
+
+            $this->dispatcher->dispatch(new BarcodeCreatedEvent($uuid, $gtin));
+
+            $this
+                ->db
+                ->commit()
             ;
         }
 
