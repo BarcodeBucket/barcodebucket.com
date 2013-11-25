@@ -19,4 +19,12 @@ class BarcodeCreatedEvent extends Event
     {
         $this->barcode = $barcode;
     }
+
+    /**
+     * @return \BarcodeBucket\Model\Barcode
+     */
+    public function getBarcode()
+    {
+        return $this->barcode;
+    }
 }
