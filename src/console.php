@@ -23,7 +23,9 @@ $console
     ->register('database:empty')
     ->setDescription('Deletes all data from database')
     ->setCode(function (InputInterface $input, OutputInterface $output) use ($app) {
-        $app['db']->executeUpdate('DELETE FROM barcodes');
+        foreach (['barcodes'] as $table) {
+            $app['db']->executeUpdate('DELETE FROM '.$table);
+        }
     })
 ;
 
