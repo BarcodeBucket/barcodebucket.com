@@ -36,6 +36,15 @@ class WebinforivController
      */
     public function barcodeAction($fullBarcode)
     {
-        return $this->application->json($this->scraper->loadIssue($fullBarcode));
+        $issue = $this->scraper->loadIssue($fullBarcode);
+
+        return $this->application->json([
+            'title'    => $issue->getTitle(),
+            'subtitle' => $issue->getSubtitle(),
+            'sender'   => [
+                'id'   => $issue->getSenderId(),
+                'name' => $issue->getSender()
+            ]
+        ]);
     }
 }
