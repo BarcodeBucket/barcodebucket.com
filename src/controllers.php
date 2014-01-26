@@ -5,7 +5,7 @@ $app['barcode.controller'] = $app->share(function ($app) {
 });
 
 $app['webinforiv.controller'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Controller\WebinforivController($app, $app['webinforiv.scraper']);
+    return new \BarcodeBucket\Controller\WebinforivController($app, $app['webinforiv.scraper'], $app['barcode.service'], $app['barcode.validator']);
 });
 
 $app['controllers']
@@ -19,4 +19,4 @@ $app->get('/', function () use ($app) {
 $app->get('/barcode/{gtin}', 'barcode.controller:gtinAction')->assert('gtin', '[0-9]{8,14}');
 $app->get('/barcode/{uuid}', 'barcode.controller:uuidAction');
 
-$app->get('/barcode/{fullBarcode}', 'webinforiv.controller:barcodeAction')->assert('fullBarcode', '[0-9]{18}');
+$app->get('/scraper/{fullBarcode}', 'webinforiv.controller:barcodeAction')->assert('fullBarcode', '[0-9]{18}');

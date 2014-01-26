@@ -1,9 +1,11 @@
 <?php
 namespace BarcodeBucket\Controller;
 
+use BarcodeBucket\Data\BarcodeService;
 use Silex\Application;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Scraper;
+use Zend\Validator\Barcode;
 
 /**
  * Class BarcodeController
@@ -22,13 +24,28 @@ class WebinforivController
     private $scraper;
 
     /**
-     * @param Application $application
-     * @param Scraper     $scraper
+     * @var \BarcodeBucket\Data\BarcodeService
      */
-    public function __construct(Application $application, Scraper $scraper)
+    private $barcodeService;
+
+    /**
+     * @var \Zend\Validator\Barcode
+     */
+    private $barcodeValidator;
+
+    /**
+     * @param Application    $application
+     * @param Scraper        $scraper
+     * @param BarcodeService $barcodeService
+     * @param Barcode        $barcodeValidator
+     */
+    public function __construct(Application $application, Scraper $scraper, BarcodeService $barcodeService,
+                                Barcode $barcodeValidator)
     {
         $this->application = $application;
         $this->scraper = $scraper;
+        $this->barcodeService = $barcodeService;
+        $this->barcodeValidator = $barcodeValidator;
     }
 
     /**
@@ -43,8 +60,14 @@ class WebinforivController
             throw new NotFoundHttpException('Issue not found');
         }
 
+        $barcode = substr($fullBarcode, 0, 13);
+
+        if ($this->barcodeValidator->isValid($barcode)) {
+            $this->barcodeService->upsert($barcode);
+        }
+
         return $this->application->json([
-            'barcode'     => substr($fullBarcode, 0, 13),
+            'barcode'     => $barcode,
             'addon'       => substr($fullBarcode, 13),
             'title'       => $issue->getTitle(),
             'subtitle'    => $issue->getSubtitle(),
