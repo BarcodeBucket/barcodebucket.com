@@ -1,5 +1,10 @@
 .idea
+/app/cache/*
+!/app/cache/.gitkeep
+/app/logs/*
+!/app/logs/.gitkeep
 /nbproject
 /vendor
+parameters.yml
 composer.phar
 php-cs-fixer.phar
