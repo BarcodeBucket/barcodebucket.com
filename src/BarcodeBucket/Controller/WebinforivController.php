@@ -63,9 +63,9 @@ class WebinforivController
      */
     public function barcodeAction($fullBarcode)
     {
-        if ($this->cache->hasItem($fullBarcode)) {
-            $data = $this->cache->getItem($fullBarcode);
-        } else {
+        $data = $this->cache->getItem($fullBarcode, $success);
+
+        if (!$success || empty($data)) {
             $data = $this->loadData($fullBarcode);
             $this->cache->setItem($fullBarcode, $data);
         }
