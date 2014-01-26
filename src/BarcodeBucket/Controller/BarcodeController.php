@@ -28,7 +28,9 @@ class BarcodeController
     private $barcodeValidator;
 
     /**
+     * @param Application    $application
      * @param BarcodeService $barcodeService
+     * @param Barcode        $barcodeValidator
      */
     public function __construct(Application $application, BarcodeService $barcodeService, Barcode $barcodeValidator)
     {
