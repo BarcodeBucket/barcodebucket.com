@@ -39,8 +39,13 @@ class WebinforivController
         $issue = $this->scraper->loadIssue($fullBarcode);
 
         return $this->application->json([
-            'title'    => $issue->getTitle(),
-            'subtitle' => $issue->getSubtitle(),
+            'barcode'     => substr($fullBarcode, 0, 13),
+            'addon'       => substr($fullBarcode, 13),
+            'title'       => $issue->getTitle(),
+            'subtitle'    => $issue->getSubtitle(),
+            'issueNumber' => $issue->getIssueNumber(),
+            'price'       => $issue->getPrice(),
+            'lastUpdated' => $issue->getLastUpdate(),
             'sender'   => [
                 'id'   => $issue->getSenderId(),
                 'name' => $issue->getSender()
