@@ -1,5 +1,6 @@
 .idea
 *.swp
+/app/config/deploy.rb
 /app/cache/*
 !/app/cache/.gitkeep
 /app/logs/*
