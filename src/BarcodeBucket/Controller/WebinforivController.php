@@ -31,10 +31,11 @@ class WebinforivController
     }
 
     /**
-     * @param string $fullBarcode
+     * @param $fullBarcode
+     * @return \Symfony\Component\HttpFoundation\JsonResponse
      */
     public function barcodeAction($fullBarcode)
     {
-        $this->application->json($this->scraper->loadIssue($fullBarcode));
+        return $this->application->json($this->scraper->loadIssue($fullBarcode));
     }
 }
