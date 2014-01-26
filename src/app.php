@@ -32,4 +32,8 @@ $app['barcode.validator'] = $app->share(function ($app) {
     return new \Zend\Validator\Barcode('GTIN14');
 });
 
+$app['webinforiv.scraper'] = $app->share(function ($app) {
+    return new \WebinforivScraper\Scraper(new Goutte\Client());
+});
+
 return $app;

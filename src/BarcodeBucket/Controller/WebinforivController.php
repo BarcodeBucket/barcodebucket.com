@@ -29,4 +29,12 @@ class WebinforivController
         $this->application = $application;
         $this->scraper = $scraper;
     }
+
+    /**
+     * @param string $fullBarcode
+     */
+    public function barcodeAction($fullBarcode)
+    {
+        $this->application->json($this->scraper->loadIssue($fullBarcode));
+    }
 }
