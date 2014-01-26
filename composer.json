@@ -1,33 +1,73 @@
 {
-    "name": "barcodebucket/simple-service",
+    "name": "barcodebucket/barcodebucket.com",
     "autoload": {
-        "psr-0": { "BarcodeBucket": "src/" }
+        "psr-0": { "": "src/" }
     },
     "license": "AGPLv3",
     "require": {
-        "ext-sqlite3": "*",
+        "php": ">=5.4.0",
+        "symfony/symfony": "~2.4",
+        "symfony/icu": "1.1.*",
+        "doctrine/orm": "~2.2,>=2.2.3",
+        "doctrine/doctrine-bundle": "~1.2",
+        "twig/extensions": "~1.0",
+        "symfony/assetic-bundle": "~2.3",
+        "symfony/swiftmailer-bundle": "~2.3",
+        "symfony/monolog-bundle": "~2.4",
+        "sensio/distribution-bundle": "~2.3",
+        "sensio/framework-extra-bundle": "~3.0",
+        "sensio/generator-bundle": "~2.3",
+        "incenteev/composer-parameter-handler": "~2.0",
         "silex/silex": "~1.0",
-        "doctrine/dbal": "~2.3",
         "zendframework/zend-cache": "~2.0",
         "zendframework/zend-validator": "~2.0",
-        "twig/twig": "~1.8",
-        "symfony/twig-bridge": "~2.1",
         "rhumsaa/uuid": "~2.5",
-        "symfony/console": "~2.3",
+        "doctrine/doctrine-migrations-bundle": "dev-master@dev",
+        "doctrine/migrations": "dev-master@dev",
+        "friendsofsymfony/user-bundle": "~1.3",
+        "friendsofsymfony/rest-bundle": "~1.0",
+        "jms/serializer-bundle": "~0.9",
+        "mopa/bootstrap-bundle": "3.*@dev",
+        "twbs/bootstrap": "3.0.*",
+        "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "pugx/generator-bundle": "~2.4",
+        "knplabs/knp-paginator-bundle": "~2.4",
         "barcodebucket/barcodebucket-core": "@dev",
         "barcodebucket/webinforiv-scraper": "~0.2"
     },
     "require-dev": {
-        "phpunit/phpunit": "~3.7",
-        "symfony/browser-kit": "~2.3"
+        "phpunit/phpunit": "~3.7"
     },
     "config": {
         "bin-dir": "bin"
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ],
+        "post-update-cmd": [
+            "Incenteev\\ParameterHandler\\ScriptHandler::buildParameters",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::buildBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::clearCache",
+            "Mopa\\Bundle\\BootstrapBundle\\Composer\\ScriptHandler::postInstallSymlinkTwitterBootstrap",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installAssets",
+            "Sensio\\Bundle\\DistributionBundle\\Composer\\ScriptHandler::installRequirementsFile"
+        ]
     },
     "repositories": [
         {
             "type": "composer",
             "url": "https://packages.zendframework.com/"
         }
-    ]
+    ],
+    "extra": {
+        "incenteev-parameters": {
+            "file": "app/config/parameters.yml"
+        }
+    }
 }

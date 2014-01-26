@@ -1,5 +1,13 @@
 .idea
+*.swp
+/app/config/deploy.rb
+/app/cache/*
+!/app/cache/.gitkeep
+/app/logs/*
+!/app/logs/.gitkeep
 /nbproject
 /vendor
+/web/bundles
+parameters.yml
 composer.phar
 php-cs-fixer.phar
