@@ -17,7 +17,7 @@ $app->register(new DoctrineServiceProvider(), array(
 $app->register(new Silex\Provider\ServiceControllerServiceProvider());
 
 $app->register(new Silex\Provider\TwigServiceProvider(), array(
-    'twig.path' => __DIR__.'/../views',
+    'twig.path' => __DIR__.'/Barcodebucket/Bundle/MainBundle/Resources/views/',
 ));
 
 $app['uuid.generator'] = $app->share(function ($app) {
@@ -47,5 +47,5 @@ $app['cache'] = $app->share(function () {
         ),
     ));
 });
-
+$app['debug'] = true;
 return $app;

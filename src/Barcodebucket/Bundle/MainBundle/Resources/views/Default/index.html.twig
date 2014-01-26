@@ -1,1 +1,13 @@
-Hello {{ name }}!
+{% extends 'BarcodebucketMainBundle::base.html.twig' %}
+{% block content %}
+  <a href="https://github.com/BarcodeBucket/barcodebucket.com"><img style="position: absolute; top: 0; right: 0; border: 0;" src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png" alt="Fork me on GitHub"></a>
+  <div class="hero-unit">
+    <h1>Validate and store your barcodes</h1>
+    <p>converting them to the leading GTIN-14 standard</p>
+    <form id="home-form">
+      <input type="text" name="barcode" id="barcode" placeholder="Enter a EAN or UPC barcode"/>
+    </form>
+    <ul id="barcode-list"></ul>
+    <p>Permanent storage feature coming soon...<p>
+  </div>
+{% endblock content %}

@@ -13,7 +13,7 @@ $app['controllers']
 ;
 
 $app->get('/', function () use ($app) {
-    return $app['twig']->render('index.twig');
+    return $app['twig']->render('Default/index.html.twig');
 });
 
 $app->get('/barcode/{gtin}', 'barcode.controller:gtinAction')->assert('gtin', '[0-9]{8,14}');

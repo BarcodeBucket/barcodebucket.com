@@ -60,7 +60,7 @@ class BarcodeController
 
         $uuid = $this->barcodeService->upsert($gtin);
 
-        return $this->application->redirect('/barcode/'.$uuid);
+        return $this->application->redirect('/legacy.php/barcode/'.$uuid);
     }
 
     private function barcodeResponse($uuid, $gtin)

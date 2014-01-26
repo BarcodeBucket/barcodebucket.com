@@ -8,7 +8,7 @@ $(document).ready(function() {
                 .ajax({
                     type: 'get',
                     dataType: 'json',
-                    url: '/barcode/' + barcode,
+                    url: '/legacy.php/barcode/' + barcode,
                     success: function (data) {  
                         $('#barcode-list')
                             .prepend('<li>' + data.gtin + '</li>')
