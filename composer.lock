@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "6286f42d89a883f85af43a13d85e54ed",
+    "hash": "98a601dce3deadff4db940dbb9e89411",
     "packages": [
         {
             "name": "barcodebucket/barcodebucket-core",
@@ -43,16 +43,16 @@
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
-            "version": "v0.2.2",
+            "version": "v0.2.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/webinforiv-scraper.git",
-                "reference": "40f3a78a55566b40596961706c92b74e87ce9f0a"
+                "reference": "08d2c908826215505aab9b38ff9da8147fcb0cd9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/40f3a78a55566b40596961706c92b74e87ce9f0a",
-                "reference": "40f3a78a55566b40596961706c92b74e87ce9f0a",
+                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/08d2c908826215505aab9b38ff9da8147fcb0cd9",
+                "reference": "08d2c908826215505aab9b38ff9da8147fcb0cd9",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 }
             ],
             "description": "A PHP scraper for www.webinforiv.it",
-            "time": "2014-01-26 13:27:33"
+            "time": "2014-01-26 18:12:24"
         },
         {
             "name": "doctrine/annotations",
@@ -427,31 +427,33 @@
         },
         {
             "name": "doctrine/dbal",
-            "version": "2.3.4",
+            "version": "v2.4.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/dbal.git",
-                "reference": "2a37b007dda8e21bdbb8fa445be8fa0064199e13"
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/dbal/zipball/2a37b007dda8e21bdbb8fa445be8fa0064199e13",
-                "reference": "2a37b007dda8e21bdbb8fa445be8fa0064199e13",
+                "url": "https://api.github.com/repos/doctrine/dbal/zipball/fec965d330c958e175c39e61c3f6751955af32d0",
+                "reference": "fec965d330c958e175c39e61c3f6751955af32d0",
                 "shasum": ""
             },
             "require": {
-                "doctrine/common": ">=2.3.0,<2.5-dev",
+                "doctrine/common": "~2.4",
                 "php": ">=5.3.2"
             },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.3.x-dev"
-                }
+            "require-dev": {
+                "phpunit/phpunit": "3.7.*",
+                "symfony/console": "~2.0"
             },
+            "suggest": {
+                "symfony/console": "Allows use of the command line interface"
+            },
+            "type": "library",
             "autoload": {
                 "psr-0": {
-                    "Doctrine\\DBAL": "lib/"
+                    "Doctrine\\DBAL\\": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -487,7 +489,7 @@
                 "persistence",
                 "queryobject"
             ],
-            "time": "2013-05-11 07:45:37"
+            "time": "2014-01-01 16:43:57"
         },
         {
             "name": "doctrine/doctrine-bundle",
@@ -854,23 +856,28 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "2.3.4",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "a41b02c080114c0de3da4ee9fba61f7d18fae7d0"
+                "reference": "84373d05a4198ec380918d535abf83c454c3867f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/a41b02c080114c0de3da4ee9fba61f7d18fae7d0",
-                "reference": "a41b02c080114c0de3da4ee9fba61f7d18fae7d0",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/84373d05a4198ec380918d535abf83c454c3867f",
+                "reference": "84373d05a4198ec380918d535abf83c454c3867f",
                 "shasum": ""
             },
             "require": {
-                "doctrine/dbal": "2.3.*",
+                "doctrine/collections": "~1.1",
+                "doctrine/dbal": "~2.4",
                 "ext-pdo": "*",
                 "php": ">=5.3.2",
-                "symfony/console": "2.*"
+                "symfony/console": "~2.0"
+            },
+            "require-dev": {
+                "satooshi/php-coveralls": "dev-master",
+                "symfony/yaml": "~2.1"
             },
             "suggest": {
                 "symfony/yaml": "If you want to use YAML Metadata Mapping Driver"
@@ -882,12 +889,12 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "2.4.x-dev"
                 }
             },
             "autoload": {
                 "psr-0": {
-                    "Doctrine\\ORM": "lib/"
+                    "Doctrine\\ORM\\": "lib/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -921,7 +928,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2013-05-11 07:51:12"
+            "time": "2013-11-12 12:40:13"
         },
         {
             "name": "fabpot/goutte",
@@ -1910,6 +1917,42 @@
             "time": "2013-11-14 19:48:31"
         },
         {
+            "name": "moontoast/math",
+            "version": "1.1.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/moontoast/math.git",
+                "reference": "fce28a9d1e73e73376cb44e5e581675d15fbe2f3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/moontoast/math/zipball/fce28a9d1e73e73376cb44e5e581675d15fbe2f3",
+                "reference": "fce28a9d1e73e73376cb44e5e581675d15fbe2f3",
+                "shasum": ""
+            },
+            "require": {
+                "ext-bcmath": "*",
+                "php": ">=5.3.3"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-0": {
+                    "Moontoast\\Math": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "description": "A mathematics library, providing functionality for large numbers",
+            "homepage": "https://github.com/moontoast/math",
+            "keywords": [
+                "bcmath",
+                "math"
+            ],
+            "time": "2013-01-19 17:42:34"
+        },
+        {
             "name": "mopa/bootstrap-bundle",
             "version": "dev-master",
             "target-dir": "Mopa/Bundle/BootstrapBundle",
@@ -2260,34 +2303,38 @@
         },
         {
             "name": "rhumsaa/uuid",
-            "version": "2.5.0",
+            "version": "2.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "4b0bd0f6cb740dec8c4aebf20957925981a21706"
+                "reference": "806f46722fcd2a5b151a94471d0d5d63d519e1bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/4b0bd0f6cb740dec8c4aebf20957925981a21706",
-                "reference": "4b0bd0f6cb740dec8c4aebf20957925981a21706",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/806f46722fcd2a5b151a94471d0d5d63d519e1bc",
+                "reference": "806f46722fcd2a5b151a94471d0d5d63d519e1bc",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.3.3"
+                "moontoast/math": "~1.1",
+                "php": ">=5.3.3",
+                "symfony/console": "~2.4"
             },
             "require-dev": {
                 "doctrine/dbal": ">=2.3",
-                "moontoast/math": "1.1.0",
                 "phpunit/phpunit": "~3.7"
             },
             "suggest": {
                 "doctrine/dbal": "Allow the use of a UUID as doctrine field type.",
                 "moontoast/math": "Provides support for large integers."
             },
+            "bin": [
+                "bin/uuid"
+            ],
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.5.x-dev"
+                    "dev-master": "2.6.x-dev"
                 }
             },
             "autoload": {
@@ -2316,7 +2363,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2013-10-30 22:43:52"
+            "time": "2014-01-17 23:40:22"
         },
         {
             "name": "sensio/distribution-bundle",
@@ -2366,27 +2413,35 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v2.3.4",
+            "version": "v3.0.0",
             "target-dir": "Sensio/Bundle/FrameworkExtraBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "cce05719041d952bbec856789ca18646a1891d03"
+                "reference": "2016a90bd032248e7d6e9da29def4959821127c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/cce05719041d952bbec856789ca18646a1891d03",
-                "reference": "cce05719041d952bbec856789ca18646a1891d03",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/2016a90bd032248e7d6e9da29def4959821127c8",
+                "reference": "2016a90bd032248e7d6e9da29def4959821127c8",
                 "shasum": ""
             },
             "require": {
                 "doctrine/common": "~2.2",
-                "symfony/framework-bundle": "~2.2"
+                "symfony/framework-bundle": "~2.4"
+            },
+            "require-dev": {
+                "symfony/expression-language": "~2.4",
+                "symfony/security-bundle": "~2.4"
+            },
+            "suggest": {
+                "symfony/expression-language": "",
+                "symfony/security-bundle": ""
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3.x-dev"
+                    "dev-master": "3.0.x-dev"
                 }
             },
             "autoload": {
@@ -2409,7 +2464,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2013-07-24 08:49:53"
+            "time": "2013-12-03 07:53:39"
         },
         {
             "name": "sensio/generator-bundle",
@@ -2705,33 +2760,35 @@
         },
         {
             "name": "symfony/monolog-bundle",
-            "version": "v2.3.0",
+            "version": "v2.5.0",
             "target-dir": "Symfony/Bundle/MonologBundle",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/MonologBundle.git",
-                "reference": "03ed73bc11367b3156cc21f22ac37c7f70fcd10a"
+                "reference": "29a17a347dfc41aed34ce9b72cceaf375635c408"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/03ed73bc11367b3156cc21f22ac37c7f70fcd10a",
-                "reference": "03ed73bc11367b3156cc21f22ac37c7f70fcd10a",
+                "url": "https://api.github.com/repos/symfony/MonologBundle/zipball/29a17a347dfc41aed34ce9b72cceaf375635c408",
+                "reference": "29a17a347dfc41aed34ce9b72cceaf375635c408",
                 "shasum": ""
             },
             "require": {
-                "monolog/monolog": "~1.3",
+                "monolog/monolog": "~1.6",
                 "php": ">=5.3.2",
-                "symfony/config": "~2.2-beta2",
-                "symfony/dependency-injection": "~2.2-beta2",
-                "symfony/monolog-bridge": "~2.2-beta2"
+                "symfony/config": "~2.3",
+                "symfony/dependency-injection": "~2.3",
+                "symfony/http-kernel": "~2.3",
+                "symfony/monolog-bridge": "~2.3"
             },
             "require-dev": {
-                "symfony/yaml": "~2.2-beta2"
+                "symfony/console": "~2.3",
+                "symfony/yaml": "~2.3"
             },
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.2.x-dev"
+                    "dev-master": "2.5.x-dev"
                 }
             },
             "autoload": {
@@ -2759,7 +2816,7 @@
                 "log",
                 "logging"
             ],
-            "time": "2013-05-27 18:06:55"
+            "time": "2014-01-19 13:23:40"
         },
         {
             "name": "symfony/swiftmailer-bundle",
@@ -2818,16 +2875,16 @@
         },
         {
             "name": "symfony/symfony",
-            "version": "v2.3.9",
+            "version": "v2.4.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74"
+                "reference": "377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74",
-                "reference": "ee1e0f2ef882ccd6a53ff91e5ffc39a22b6a6b74",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d",
+                "reference": "377a5fb23bfdc2fb616610b7b7ab7cc9a50e614d",
                 "shasum": ""
             },
             "require": {
@@ -2848,6 +2905,7 @@
                 "symfony/doctrine-bridge": "self.version",
                 "symfony/dom-crawler": "self.version",
                 "symfony/event-dispatcher": "self.version",
+                "symfony/expression-language": "self.version",
                 "symfony/filesystem": "self.version",
                 "symfony/finder": "self.version",
                 "symfony/form": "self.version",
@@ -2864,7 +2922,11 @@
                 "symfony/proxy-manager-bridge": "self.version",
                 "symfony/routing": "self.version",
                 "symfony/security": "self.version",
+                "symfony/security-acl": "self.version",
                 "symfony/security-bundle": "self.version",
+                "symfony/security-core": "self.version",
+                "symfony/security-csrf": "self.version",
+                "symfony/security-http": "self.version",
                 "symfony/serializer": "self.version",
                 "symfony/stopwatch": "self.version",
                 "symfony/swiftmailer-bridge": "self.version",
@@ -2882,13 +2944,13 @@
                 "doctrine/orm": "~2.2,>=2.2.3",
                 "ircmaxell/password-compat": "1.0.*",
                 "monolog/monolog": "~1.3",
-                "ocramius/proxy-manager": ">=0.3.1,<0.4-dev",
+                "ocramius/proxy-manager": ">=0.3.1,<0.6-dev",
                 "propel/propel1": "1.6.*"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "2.3-dev"
+                    "dev-master": "2.4-dev"
                 }
             },
             "autoload": {
@@ -2922,7 +2984,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2014-01-05 01:24:54"
+            "time": "2014-01-05 02:12:11"
         },
         {
             "name": "twbs/bootstrap",
@@ -3781,8 +3843,7 @@
         "barcodebucket/barcodebucket-core": 20
     },
     "platform": {
-        "php": ">=5.4.0",
-        "ext-sqlite3": "*"
+        "php": ">=5.4.0"
     },
     "platform-dev": [
 
