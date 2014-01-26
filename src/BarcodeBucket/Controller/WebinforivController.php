@@ -73,11 +73,12 @@ class WebinforivController
             $this->cache->setItem($fullBarcode, serialize($data));
         }
 
+        $lastUpdated = $data['lastUpdated'];
+        $data['lastUpdated'] = $data['lastUpdated']->format(\DateTime::W3C);
+
         $response = $this->application->json($data);
         $response->setPublic();
-        $response->setLastModified($data['lastUpdated']);
-
-        $data['lastUpdated'] = $data['lastUpdated']->format(\DateTime::W3C);
+        $response->setLastModified($lastUpdated);
 
         return $response;
     }
