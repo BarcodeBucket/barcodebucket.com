@@ -9,8 +9,11 @@ $app = new Application();
 
 $app->register(new DoctrineServiceProvider(), array(
     'db.options' => array(
-        'driver'   => 'pdo_sqlite',
-        'path'     => __DIR__.'/../db/app.sqlite',
+        'driver'   => 'pdo_mysql',
+        'user' => 'barcodebucket',
+        'password' => 'barcodebucket',
+        'dbname' => 'barcodebucket',
+        'host' => 'localhost'
     ),
 ));
 
