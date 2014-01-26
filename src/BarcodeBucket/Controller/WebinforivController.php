@@ -65,13 +65,10 @@ class WebinforivController
     {
         $data = $this->cache->getItem($fullBarcode, $success);
 
-        $cached = $success && !empty($data);
-        if (!$cached) {
+        if (!$success || empty($data)) {
             $data = json_encode($this->loadData($fullBarcode));
             $this->cache->setItem($fullBarcode, $data);
         }
-
-        $data->cached = $cached;
 
         return $this->application->json(json_decode($data));
     }
