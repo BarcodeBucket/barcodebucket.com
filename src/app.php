@@ -36,4 +36,16 @@ $app['webinforiv.scraper'] = $app->share(function ($app) {
     return new \WebinforivScraper\Scraper(new Goutte\Client());
 });
 
+$app['cache'] = $app->share(function () {
+    return \Zend\Cache\StorageFactory::factory(array(
+        'adapter' => array(
+            'name'    => 'apc',
+            'options' => array('ttl' => 3600),
+        ),
+        'plugins' => array(
+            'exception_handler' => array('throw_exceptions' => false),
+        ),
+    ));
+});
+
 return $app;

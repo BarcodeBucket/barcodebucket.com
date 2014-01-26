@@ -5,6 +5,7 @@ use BarcodeBucket\Data\BarcodeService;
 use Silex\Application;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Scraper;
+use Zend\Cache\Storage\StorageInterface;
 use Zend\Validator\Barcode;
 
 /**
@@ -34,18 +35,25 @@ class WebinforivController
     private $barcodeValidator;
 
     /**
-     * @param Application    $application
-     * @param Scraper        $scraper
-     * @param BarcodeService $barcodeService
-     * @param Barcode        $barcodeValidator
+     * @var \Zend\Cache\Storage\StorageInterface
+     */
+    private $cache;
+
+    /**
+     * @param Application      $application
+     * @param Scraper          $scraper
+     * @param BarcodeService   $barcodeService
+     * @param Barcode          $barcodeValidator
+     * @param StorageInterface $cache
      */
     public function __construct(Application $application, Scraper $scraper, BarcodeService $barcodeService,
-                                Barcode $barcodeValidator)
+                                Barcode $barcodeValidator, StorageInterface $cache)
     {
         $this->application = $application;
         $this->scraper = $scraper;
         $this->barcodeService = $barcodeService;
         $this->barcodeValidator = $barcodeValidator;
+        $this->cache = $cache;
     }
 
     /**
@@ -55,43 +63,14 @@ class WebinforivController
      */
     public function barcodeAction($fullBarcode)
     {
-        $barcode = substr($fullBarcode, 0, 13);
-        $gtin = '0' . $barcode;
-
-        if (!$this->barcodeValidator->isValid($gtin) ||
-            ($issue = $this->scraper->loadIssue($fullBarcode)) === null) {
-            throw new NotFoundHttpException('Issue not found');
+        if ($this->cache->hasItem($fullBarcode)) {
+            $data = $this->cache->getItem($fullBarcode);
+        } else {
+            $data = $this->loadData($fullBarcode);
+            $this->cache->setItem($fullBarcode, $data);
         }
 
-        $uuid = $this->barcodeService->upsert($gtin);
-
-        return $this->application->json([
-            'barcode'     => [
-                'uuid' => $uuid,
-                'ean'  => $barcode,
-                'gtin' => $gtin,
-            ],
-            'addon'       => substr($fullBarcode, 13),
-            'title'       => $issue->getTitle(),
-            'subtitle'    => $issue->getSubtitle(),
-            'issueNumber' => $issue->getIssueNumber(),
-            'date'        => $issue->getDate()->format('Y-m-d'),
-            'price'       => $issue->getPrice(),
-            'picture'     => $this->getPictureForIssue($issue),
-            'termsOfSale' => [
-                'taxRate'      => $issue->getTaxRate(),
-                'discount'     => $issue->getDiscount(),
-                'discountCode' => $issue->getDiscountCode(),
-                'foldingFee'   => $issue->getFoldingFee(),
-                'waybillPrice' => $issue->getWaybillPrice(),
-                'consigment'   => $issue->isConsignment(),
-            ],
-            'sender'   => [
-                'id'   => $issue->getSenderId(),
-                'name' => $issue->getSender()
-            ],
-            'lastUpdated' => $issue->getLastUpdate()
-        ]);
+        return $this->application->json($data);
     }
 
     /**
@@ -101,5 +80,52 @@ class WebinforivController
     private function getPictureForIssue($issue)
     {
         return $issue->getPicture();
+    }
+
+    /**
+     * @param $fullBarcode
+     * @return array
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    private function loadData($fullBarcode)
+    {
+        $barcode = substr($fullBarcode, 0, 13);
+        $gtin = '0' . $barcode;
+
+        if (!$this->barcodeValidator->isValid($gtin) ||
+            ($issue = $this->scraper->loadIssue($fullBarcode)) === null
+        ) {
+            throw new NotFoundHttpException('Issue not found');
+        }
+
+        $uuid = $this->barcodeService->upsert($gtin);
+
+        return [
+            'barcode' => [
+                'uuid' => $uuid,
+                'ean' => $barcode,
+                'gtin' => $gtin,
+            ],
+            'addon' => substr($fullBarcode, 13),
+            'title' => $issue->getTitle(),
+            'subtitle' => $issue->getSubtitle(),
+            'issueNumber' => $issue->getIssueNumber(),
+            'date' => $issue->getDate()->format('Y-m-d'),
+            'price' => $issue->getPrice(),
+            'picture' => $this->getPictureForIssue($issue),
+            'termsOfSale' => [
+                'taxRate' => $issue->getTaxRate(),
+                'discount' => $issue->getDiscount(),
+                'discountCode' => $issue->getDiscountCode(),
+                'foldingFee' => $issue->getFoldingFee(),
+                'waybillPrice' => $issue->getWaybillPrice(),
+                'consigment' => $issue->isConsignment(),
+            ],
+            'sender' => [
+                'id' => $issue->getSenderId(),
+                'name' => $issue->getSender()
+            ],
+            'lastUpdated' => $issue->getLastUpdate()
+        ];
     }
 }
