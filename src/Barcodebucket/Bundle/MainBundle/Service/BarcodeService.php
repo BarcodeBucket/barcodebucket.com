@@ -1,8 +1,9 @@
 <?php
 
-namespace BarcodeBucket\Data;
+namespace Barcodebucket\Bundle\MainBundle\Service;
 
-use BarcodeBucket\Event\BarcodeCreatedEvent;
+use Barcodebucket\Bundle\MainBundle\Event\BarcodeCreatedEvent;
+use Barcodebucket\Bundle\MainBundle\UUID\UUIDGeneratorInterface;
 use BarcodeBucket\Model\Barcode;
 use Doctrine\DBAL\Connection;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;

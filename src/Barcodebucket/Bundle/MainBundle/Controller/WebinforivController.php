@@ -1,8 +1,8 @@
 <?php
-namespace BarcodeBucket\Controller;
+namespace Barcodebucket\Bundle\MainBundle\Controller;
 
-use BarcodeBucket\Data\BarcodeService;
-use Silex\Application;
+use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Scraper;
 use Zend\Cache\Storage\StorageInterface;
@@ -15,17 +15,12 @@ use Zend\Validator\Barcode;
 class WebinforivController
 {
     /**
-     * @var \Silex\Application
-     */
-    private $application;
-
-    /**
-     * @var \WebinforivScraper\Scraper
+     * @var Scraper
      */
     private $scraper;
 
     /**
-     * @var \BarcodeBucket\Data\BarcodeService
+     * @var BarcodeService
      */
     private $barcodeService;
 
@@ -35,21 +30,19 @@ class WebinforivController
     private $barcodeValidator;
 
     /**
-     * @var \Zend\Cache\Storage\StorageInterface
+     * @var StorageInterface
      */
     private $cache;
 
     /**
-     * @param Application      $application
      * @param Scraper          $scraper
      * @param BarcodeService   $barcodeService
      * @param Barcode          $barcodeValidator
      * @param StorageInterface $cache
      */
-    public function __construct(Application $application, Scraper $scraper, BarcodeService $barcodeService,
+    public function __construct(Scraper $scraper, BarcodeService $barcodeService,
                                 Barcode $barcodeValidator, StorageInterface $cache)
     {
-        $this->application = $application;
         $this->scraper = $scraper;
         $this->barcodeService = $barcodeService;
         $this->barcodeValidator = $barcodeValidator;
@@ -76,7 +69,7 @@ class WebinforivController
         $lastUpdated = $data['lastUpdated'];
         $data['lastUpdated'] = $data['lastUpdated']->format(\DateTime::W3C);
 
-        $response = $this->application->json($data);
+        $response = new JsonResponse($data);
         $response->setPublic();
         $response->setLastModified($lastUpdated);
 

@@ -1,7 +1,61 @@
 parameters:
-#    barcodebucket_main.example.class: Barcodebucket\Bundle\MainBundle\Example
+    barcodebucket_main.cache.class:                 Zend\Cache\Storage\Adapter\Filesystem
+    barcodebucket_main.cache.factory.class:         Barcodebucket\Bundle\MainBundle\Cache\CacheFactory
+    barcodebucket_main.controller.barcode.class:    Barcodebucket\Bundle\MainBundle\Controller\BarcodeController
+    barcodebucket_main.controller.webinforiv.class: Barcodebucket\Bundle\MainBundle\Controller\WebinforivController
+    barcodebucket_main.generator.uuid.class:        Barcodebucket\Bundle\MainBundle\UUID\RhumsaaUUIDGenerator
+    barcodebucket_main.goutte.webinforiv.class:     Goutte\Client
+    barcodebucket_main.extractor.webinforiv.class:  WebinforivScraper\Scraper
+    barcodebucket_main.scraper.webinforiv.class:    WebinforivScraper\Scraper
+    barcodebucket_main.service.barcode.class:       Barcodebucket\Bundle\MainBundle\Service\BarcodeService
+    barcodebucket_main.validator.barcode.class:     Zend\Validator\Barcode
 
 services:
-#    barcodebucket_main.example:
-#        class: %barcodebucket_main.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    barcodebucket_main.validator.barcode:
+        class: %barcodebucket_main.validator.barcode.class%
+        arguments:
+            - 'GTIN14'
+
+    barcodebucket_main.cache.factory:
+        class: %barcodebucket_main.cache.factory.class%
+
+    barcodebucket_main.cache:
+        class:           %barcodebucket_main.cache.class%
+        factory_service: barcodebucket_main.cache.factory
+        actory_method:   get
+
+    barcodebucket_main.generator.uuid:
+        class: %barcodebucket_main.generator.uuid.class%
+
+    barcodebucket_main.service.barcode:
+        class: %barcodebucket_main.service.barcode.class%
+        arguments:
+            - @event_dispatcher
+            - @database_connection
+            - @barcodebucket_main.generator.uuid
+
+    barcodebucket_main.controller.barcode:
+        class: %barcodebucket_main.controller.barcode.class%
+        arguments:
+            - @router
+            - @barcodebucket_main.service.barcode
+            - @barcodebucket_main.validator.barcode
+
+    barcodebucket_main.extractor.webinforiv:
+        class: %barcodebucket_main.extractor.webinforiv.class%
+
+    barcodebucket_main.goutte.webinforiv:
+        class: %barcodebucket_main.goutte.webinforiv.class%
+
+    barcodebucket_main.scraper.webinforiv:
+        class: %barcodebucket_main.scraper.webinforiv.class%
+        arguments:
+            - @barcodebucket_main.goutte.webinforiv
+
+    barcodebucket_main.controller.webinforiv:
+        class: %barcodebucket_main.controller.webinforiv.class%
+        arguments:
+            - @barcodebucket_main.scraper.webinforiv
+            - @barcodebucket_main.service.barcode
+            - @barcodebucket_main.validator.barcode
+            - @barcodebucket_main.cache

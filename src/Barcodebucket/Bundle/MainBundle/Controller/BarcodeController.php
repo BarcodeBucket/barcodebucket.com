@@ -1,9 +1,12 @@
 <?php
-namespace BarcodeBucket\Controller;
 
-use BarcodeBucket\Data\BarcodeService;
-use Silex\Application;
+namespace Barcodebucket\Bundle\MainBundle\Controller;
+
+use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\RouterInterface;
 use Zend\Validator\Barcode;
 
 /**
@@ -13,12 +16,12 @@ use Zend\Validator\Barcode;
 class BarcodeController
 {
     /**
-     * @var \Silex\Application
+     * @var \Symfony\Component\Routing\RouterInterface
      */
-    private $application;
+    private $router;
 
     /**
-     * @var \BarcodeBucket\Data\BarcodeService
+     * @var \Barcodebucket\Bundle\MainBundle\Service\BarcodeService
      */
     private $barcodeService;
 
@@ -28,13 +31,13 @@ class BarcodeController
     private $barcodeValidator;
 
     /**
-     * @param Application    $application
-     * @param BarcodeService $barcodeService
-     * @param Barcode        $barcodeValidator
+     * @param RouterInterface $router
+     * @param BarcodeService  $barcodeService
+     * @param Barcode         $barcodeValidator
      */
-    public function __construct(Application $application, BarcodeService $barcodeService, Barcode $barcodeValidator)
+    public function __construct(RouterInterface $router, BarcodeService $barcodeService, Barcode $barcodeValidator)
     {
-        $this->application = $application;
+        $this->router = $router;
         $this->barcodeService = $barcodeService;
         $this->barcodeValidator = $barcodeValidator;
     }
@@ -59,19 +62,17 @@ class BarcodeController
         }
 
         $uuid = $this->barcodeService->upsert($gtin);
+        $url = $this->router->generate('barcodebucket_main_uuid', ['uuid' => $uuid]);
 
-        return $this->application->redirect('/legacy.php/barcode/'.$uuid);
+        return new RedirectResponse($url);
     }
 
     private function barcodeResponse($uuid, $gtin)
     {
-        $response = $this
-            ->application
-            ->json(array(
-                'uuid' => $uuid,
-                'gtin' => $gtin
-            ))
-        ;
+        $response = new JsonResponse([
+            'uuid' => $uuid,
+            'gtin' => $gtin
+        ]);
 
         $response->setPublic();
         $response->setSharedMaxAge(3600 * 24 * 30);

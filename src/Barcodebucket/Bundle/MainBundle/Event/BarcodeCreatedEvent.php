@@ -1,5 +1,5 @@
 <?php
-namespace BarcodeBucket\Event;
+namespace Barcodebucket\Bundle\MainBundle\Event;
 
 use BarcodeBucket\Model\Barcode;
 use Symfony\Component\EventDispatcher\Event;

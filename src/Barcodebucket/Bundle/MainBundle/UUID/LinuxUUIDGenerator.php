@@ -1,6 +1,6 @@
 <?php
 
-namespace BarcodeBucket\Data;
+namespace Barcodebucket\Bundle\MainBundle\UUID;
 
 /**
  * Class LinuxUUIDGenerator
