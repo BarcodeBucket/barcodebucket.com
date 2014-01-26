@@ -5,7 +5,7 @@ $app['barcode.controller'] = $app->share(function ($app) {
 });
 
 $app['webinforiv.controller'] = $app->share(function ($app) {
-    return new \BarcodeBucket\Controller\WebinforivController($app, $app['webinforiv.scraper'], $app['barcode.service'], $app['barcode.validator']);
+    return new \BarcodeBucket\Controller\WebinforivController($app, $app['webinforiv.scraper'], $app['barcode.service'], $app['barcode.validator'], $app['cache']);
 });
 
 $app['controllers']
