@@ -56,19 +56,20 @@ class WebinforivController
     public function barcodeAction($fullBarcode)
     {
         $barcode = substr($fullBarcode, 0, 13);
+        $gtin = '0' . $barcode;
 
-        if (!$this->barcodeValidator->isValid($barcode) ||
+        if (!$this->barcodeValidator->isValid($gtin) ||
             ($issue = $this->scraper->loadIssue($fullBarcode)) === null) {
             throw new NotFoundHttpException('Issue not found');
         }
 
-        $uuid = $this->barcodeService->upsert($barcode);
+        $uuid = $this->barcodeService->upsert($gtin);
 
         return $this->application->json([
             'barcode'     => [
                 'uuid' => $uuid,
                 'ean'  => $barcode,
-                'gtin' => '0'.$barcode,
+                'gtin' => $gtin,
             ],
             'addon'       => substr($fullBarcode, 13),
             'title'       => $issue->getTitle(),
