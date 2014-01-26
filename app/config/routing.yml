@@ -2,10 +2,6 @@ barcodebucket_main:
     resource: "@BarcodebucketMainBundle/Resources/config/routing.yml"
     prefix:   /
 
-acrive_main:
-    resource: "@AcriveMainBundle/Resources/config/routing.yml"
-    prefix:   /
-
 fos_user_security:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
 
