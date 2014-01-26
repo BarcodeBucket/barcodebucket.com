@@ -30,6 +30,8 @@
         "mopa/bootstrap-bundle": "3.*@dev",
         "twbs/bootstrap": "3.0.*",
         "doctrine/doctrine-fixtures-bundle": "~2.2",
+        "pugx/generator-bundle": "~2.4",
+        "knplabs/knp-paginator-bundle": "~2.4",
         "barcodebucket/barcodebucket-core": "@dev",
         "barcodebucket/webinforiv-scraper": "~0.2"
     },
