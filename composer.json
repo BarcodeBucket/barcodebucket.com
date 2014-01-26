@@ -8,6 +8,7 @@
         "ext-sqlite3": "*",
         "silex/silex": "~1.0",
         "doctrine/dbal": "~2.3",
+        "zendframework/zend-cache": "~2.0",
         "zendframework/zend-validator": "~2.0",
         "twig/twig": "~1.8",
         "symfony/twig-bridge": "~2.1",
@@ -22,5 +23,11 @@
     },
     "config": {
         "bin-dir": "bin"
-    }
+    },
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://packages.zendframework.com/"
+        }
+    ]
 }

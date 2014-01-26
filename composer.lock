@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "b41a05acfc5d259abb5bc0d184e8390e",
+    "hash": "c4d28533e960d04afdabdafc0cb53924",
     "packages": [
         {
             "name": "barcodebucket/barcodebucket-core",
@@ -43,16 +43,16 @@
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
-            "version": "v0.2.1",
+            "version": "v0.2.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/webinforiv-scraper.git",
-                "reference": "ddc4a05c6a1f02b1d36539a83120691221296069"
+                "reference": "40f3a78a55566b40596961706c92b74e87ce9f0a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/ddc4a05c6a1f02b1d36539a83120691221296069",
-                "reference": "ddc4a05c6a1f02b1d36539a83120691221296069",
+                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/40f3a78a55566b40596961706c92b74e87ce9f0a",
+                "reference": "40f3a78a55566b40596961706c92b74e87ce9f0a",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 }
             ],
             "description": "A PHP scraper for www.webinforiv.it",
-            "time": "2014-01-26 13:18:48"
+            "time": "2014-01-26 13:27:33"
         },
         {
             "name": "doctrine/annotations",
@@ -1908,6 +1908,153 @@
                 "templating"
             ],
             "time": "2013-12-06 07:47:10"
+        },
+        {
+            "name": "zendframework/zend-cache",
+            "version": "2.2.5",
+            "target-dir": "Zend/Cache",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendCache.git",
+                "reference": "49e5c3a59c4acb3e3e0a5b251f31b274889b1f97"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-cache-49e5c3a59c4acb3e3e0a5b251f31b274889b1f97-zip-7dac9e.zip",
+                "reference": "2.2.5",
+                "shasum": "ab20e183f489f12733a293dfe5b7504e0fbd8265"
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-eventmanager": "self.version",
+                "zendframework/zend-servicemanager": "self.version",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "require-dev": {
+                "zendframework/zend-serializer": "self.version"
+            },
+            "suggest": {
+                "ext-apc": "APC >= 3.1.6 to use the APC storage adapter",
+                "ext-dba": "DBA, to use the DBA storage adapter",
+                "ext-memcached": "Memcached >= 1.0.0 to use the Memcached storage adapter",
+                "ext-wincache": "WinCache, to use the WinCache storage adapter",
+                "zendframework/zend-serializer": "Zend\\Serializer component",
+                "zendframework/zend-session": "Zend\\Session component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\Cache\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": "provides a generic way to cache any data",
+            "keywords": [
+                "cache",
+                "zf2"
+            ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendCache/tree/release-2.2.5"
+            },
+            "time": "2013-10-26 10:00:05"
+        },
+        {
+            "name": "zendframework/zend-eventmanager",
+            "version": "2.2.5",
+            "target-dir": "Zend/EventManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendEventManager.git",
+                "reference": "f325feef4e1a19b873936e5b116980fbe88dd176"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-eventmanager-f325feef4e1a19b873936e5b116980fbe88dd176-zip-25753b.zip",
+                "reference": "2.2.5",
+                "shasum": "03861adc314fa1ee7f93efc2a5d8ed3167ea5192"
+            },
+            "require": {
+                "php": ">=5.3.3",
+                "zendframework/zend-stdlib": "self.version"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\EventManager\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": " ",
+            "keywords": [
+                "eventmanager",
+                "zf2"
+            ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendEventManager/tree/release-2.2.5"
+            },
+            "time": "2013-06-12 19:45:10"
+        },
+        {
+            "name": "zendframework/zend-servicemanager",
+            "version": "2.2.5",
+            "target-dir": "Zend/ServiceManager",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/zendframework/Component_ZendServiceManager.git",
+                "reference": "064bb1d0441529aded2f213a10002cc4523f328c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-servicemanager-064bb1d0441529aded2f213a10002cc4523f328c-zip-a8d45f.zip",
+                "reference": "2.2.5",
+                "shasum": "7bd0fb0d2117c3b74d39b3d1d546928d52a2aabd"
+            },
+            "require": {
+                "php": ">=5.3.3"
+            },
+            "suggest": {
+                "zendframework/zend-di": "Zend\\Di component"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2-dev",
+                    "dev-develop": "2.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Zend\\ServiceManager\\": ""
+                }
+            },
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "description": " ",
+            "keywords": [
+                "servicemanager",
+                "zf2"
+            ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendServiceManager/tree/release-2.2.5"
+            },
+            "time": "2013-10-23 20:00:05"
         },
         {
             "name": "zendframework/zend-stdlib",
