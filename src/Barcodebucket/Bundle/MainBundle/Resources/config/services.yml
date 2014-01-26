@@ -1,0 +1,7 @@
+parameters:
+#    barcodebucket_main.example.class: Barcodebucket\Bundle\MainBundle\Example
+
+services:
+#    barcodebucket_main.example:
+#        class: %barcodebucket_main.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

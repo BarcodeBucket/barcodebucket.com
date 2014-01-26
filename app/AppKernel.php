@@ -19,6 +19,7 @@ class AppKernel extends Kernel
             new FOS\UserBundle\FOSUserBundle(),
             new Mopa\Bundle\BootstrapBundle\MopaBootstrapBundle(),
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
+            new Barcodebucket\Bundle\MainBundle\BarcodebucketMainBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

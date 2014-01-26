@@ -1,3 +1,7 @@
+barcodebucket_main:
+    resource: "@BarcodebucketMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
 acrive_main:
     resource: "@AcriveMainBundle/Resources/config/routing.yml"
     prefix:   /

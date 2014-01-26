@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "9801a57ac9fce8bd072358fc430a55c4",
+    "hash": "6286f42d89a883f85af43a13d85e54ed",
     "packages": [
         {
             "name": "barcodebucket/barcodebucket-core",
