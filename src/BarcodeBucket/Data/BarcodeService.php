@@ -25,10 +25,9 @@ class BarcodeService
     private $UUIDGenerator;
 
     /**
-     * Constructor
-     *
-     * @param Connection             $db
-     * @param UUIDGeneratorInterface $UUIDGenerator
+     * @param EventDispatcherInterface $dispatcher
+     * @param Connection               $db
+     * @param UUIDGeneratorInterface   $UUIDGenerator
      */
     public function __construct(EventDispatcherInterface $dispatcher, Connection $db, UUIDGeneratorInterface $UUIDGenerator)
     {
