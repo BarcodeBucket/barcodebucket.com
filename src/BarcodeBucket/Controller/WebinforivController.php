@@ -77,6 +77,8 @@ class WebinforivController
         $response->setPublic();
         $response->setLastModified($data['lastUpdated']);
 
+        $data['lastUpdated'] = $data['lastUpdated']->format(\DateTime::W3C);
+
         return $response;
     }
 
