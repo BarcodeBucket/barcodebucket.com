@@ -71,7 +71,7 @@ class WebinforivController
             $this->cache->setItem($fullBarcode, $data);
         }
 
-        $data['cached'] = $data;
+        $data['cached'] = $cached;
 
         return $this->application->json($data);
     }
