@@ -70,7 +70,11 @@ class WebinforivController
             $this->cache->setItem($fullBarcode, $data);
         }
 
-        return $this->application->json(json_decode($data));
+        $response = $this->application->json(json_decode($data));
+        $response->setPublic();
+        $response->setLastModified($data->lastUpdated);
+
+        return $response;
     }
 
     /**
