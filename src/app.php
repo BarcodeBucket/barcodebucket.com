@@ -39,7 +39,7 @@ $app['webinforiv.scraper'] = $app->share(function ($app) {
 $app['cache'] = $app->share(function () {
     return \Zend\Cache\StorageFactory::factory(array(
         'adapter' => array(
-            'name'    => 'apc',
+            'name'    => 'filesystem',
             'options' => array('ttl' => 3600),
         ),
         'plugins' => array(
