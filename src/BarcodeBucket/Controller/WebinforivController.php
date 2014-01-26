@@ -65,14 +65,17 @@ class WebinforivController
     {
         $data = $this->cache->getItem($fullBarcode, $success);
 
-        if (!$success || empty($data)) {
-            $data = json_encode($this->loadData($fullBarcode));
-            $this->cache->setItem($fullBarcode, $data);
+        $cached = $success && !empty($data);
+        if ($cached) {
+            $data = unserialize($data);
+        } else {
+            $data = $this->loadData($fullBarcode);
+            $this->cache->setItem($fullBarcode, serialize($data));
         }
 
-        $response = $this->application->json(json_decode($data));
+        $response = $this->application->json($data);
         $response->setPublic();
-        $response->setLastModified($data->lastUpdated);
+        $response->setLastModified($data['lastUpdated']);
 
         return $response;
     }
