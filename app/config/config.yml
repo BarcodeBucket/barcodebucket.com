@@ -70,3 +70,8 @@ fos_user:
     db_driver: orm
     user_class: Barcodebucket\Bundle\MainBundle\Entity\User
     firewall_name: main
+
+jms_i18n_routing:
+    default_locale:  "%locale%"
+    locales: [en, it]
+    strategy: prefix
