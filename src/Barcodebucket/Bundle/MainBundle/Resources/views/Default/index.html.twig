@@ -5,7 +5,7 @@
     <h1>{{ 'home.hero' | trans() }}</h1>
     <p>{{ 'home.subtitle' | trans() }}</p>
     <form id="home-form">
-      <input type="text" name="barcode" id="barcode" placeholder="Enter a EAN or UPC barcode"/>
+      <input type="text" name="barcode" id="barcode" placeholder="{{ 'home.placeholder' | trans() }}"/>
     </form>
     <ul id="barcode-list"></ul>
     <p>{{ 'home.storage' | trans() }}<p>

@@ -2,3 +2,4 @@ home:
   hero: Verifica e memorizza i tuoi codici a barre
   subtitle: Pronti per il futuro grazie allo standard GTIN-14
   storage: Stiamo lavorando al salvataggio permanente...
+  placeholder: Inserisci un barcode EAN13 o UPC
