@@ -65,7 +65,7 @@ class WebinforivController
 
     /**
      * @param  Request  $request
-     * @param $fullBarcode
+     * @param  string   $fullBarcode
      * @return Response
      */
     public function pictureAction(Request $request, $fullBarcode)
