@@ -4,6 +4,7 @@ namespace Barcodebucket\Bundle\NewsagentBundle\Controller;
 use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
 use Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Model\Issue;
@@ -63,18 +64,28 @@ class WebinforivController
     }
 
     /**
-     * @param  string   $fullBarcode
+     * @param  Request  $request
+     * @param $fullBarcode
      * @return Response
      */
-    public function pictureAction($fullBarcode)
+    public function pictureAction(Request $request, $fullBarcode)
     {
         $gtin = $this->getGtin($fullBarcode);
         $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
         $binaryPicture = $this->scraper->loadPicture($issue);
 
-        $response = new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
-        $response->setEtag(sha1($binaryPicture));
-        $response->setPublic();
+        $etag = sha1($binaryPicture);
+        $etags = $request->getETags();
+
+        $response = new Response();
+        if (in_array($etag, $etags)) {
+            $response->setStatusCode(Response::HTTP_NOT_MODIFIED);
+        } else {
+            $response->setContent($binaryPicture);
+            $response->headers->set('Content-type', 'image/jpeg');
+            $response->setEtag($etag);
+            $response->setPublic();
+        }
 
         return $response;
     }
