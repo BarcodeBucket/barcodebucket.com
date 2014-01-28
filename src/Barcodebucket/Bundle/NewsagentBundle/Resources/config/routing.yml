@@ -1,7 +1,13 @@
 barcodebucket_newsagent_scraper:
     pattern: /scraper/{fullBarcode}
     defaults: { _controller: barcodebucket_newsagent.controller.webinforiv:barcodeAction }
-    requirements: { gtin: '[0-9]{18}' }
+    requirements: { fullBarcode: '[0-9]{18}' }
+    options: { i18n: false }
+
+barcodebucket_newsagent_picture:
+    pattern: /picture/{fullBarcode}
+    defaults: { _controller: barcodebucket_newsagent.controller.webinforiv:pictureAction }
+    requirements: { fullBarcode: '[0-9]{18}' }
     options: { i18n: false }
 
 barcodebucket_newsagent_search_index:

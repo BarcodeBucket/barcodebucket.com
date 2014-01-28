@@ -2,8 +2,9 @@
 
 namespace Barcodebucket\Bundle\NewsagentBundle\Scraping;
 
-use WebinforivScraper\Model\Issue;
-use WebinforivScraper\ScraperInterface;
+use Barcodebucket\Scraper\binary;
+use Barcodebucket\Scraper\Model\Issue;
+use Barcodebucket\Scraper\ScraperInterface;
 use Zend\Cache\Storage\StorageInterface;
 
 class ScrapingService implements ScraperInterface
@@ -43,5 +44,23 @@ class ScrapingService implements ScraperInterface
         }
 
         return $issue;
+    }
+
+    /**
+     * @param  Issue  $issue
+     * @return binary
+     */
+    public function loadPicture(Issue $issue)
+    {
+        $key = sha1($issue->getPicture());
+        $serializedPicture = $this->cache->getItem($key, $success);
+
+        $picture = $success ? unserialize($serializedPicture) : null;
+        if (empty($picture)) {
+            $picture = $this->scraper->loadPicture($issue);
+            $this->cache->setItem($key, serialize($picture));
+        }
+
+        return $picture;
     }
 }

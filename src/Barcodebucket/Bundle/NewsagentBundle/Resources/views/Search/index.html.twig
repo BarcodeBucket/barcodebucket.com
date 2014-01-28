@@ -63,8 +63,10 @@
               </div>
               {% if(issue.picture) %}
                   <div class="row-fluid">
-                      <div class="span2">{{ 'issue.picture' | trans() }}</div>
-                      <div class="span10"><a href="{{ issue.picture }}" target="_blank">{{ 'issue.picture_show' | trans() }}</a></div>
+                      <div class="span12">{{ 'issue.picture' | trans() }}</div>
+                  </div>
+                  <div class="row-fluid">
+                      <div class="span12"><img src="{{ path('barcodebucket_newsagent_picture', {fullBarcode: issue.barcode}) }}" target="_blank" alt=""/></div>
                   </div>
               {% endif %}
           </div>

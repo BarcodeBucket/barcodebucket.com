@@ -43,16 +43,16 @@
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
-            "version": "v0.4.0",
+            "version": "v0.6.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/webinforiv-scraper.git",
-                "reference": "40b03c9fe645d01774e9f39c3614433b8852783d"
+                "reference": "ca1e346a3c790bfe478e8d77ea7f5d2388888886"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/40b03c9fe645d01774e9f39c3614433b8852783d",
-                "reference": "40b03c9fe645d01774e9f39c3614433b8852783d",
+                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/ca1e346a3c790bfe478e8d77ea7f5d2388888886",
+                "reference": "ca1e346a3c790bfe478e8d77ea7f5d2388888886",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 }
             ],
             "description": "A PHP scraper for www.webinforiv.it",
-            "time": "2014-01-28 13:16:15"
+            "time": "2014-01-28 14:31:22"
         },
         {
             "name": "doctrine/annotations",
@@ -3553,9 +3553,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendStdlib/zipball/f440ecfc828d61d620662a03987c8287e1e4801e",
-                "reference": "f440ecfc828d61d620662a03987c8287e1e4801e",
-                "shasum": ""
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-stdlib-f440ecfc828d61d620662a03987c8287e1e4801e-zip-7e3c9b.zip",
+                "reference": "2.2.5",
+                "shasum": "d142b30e831141bcf5ed77e0d3ebd9356afcf9ce"
             },
             "require": {
                 "php": ">=5.3.3"
@@ -3576,14 +3576,17 @@
                     "Zend\\Stdlib\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
+            "description": " ",
             "keywords": [
                 "stdlib",
                 "zf2"
             ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendStdlib/tree/release-2.2.5"
+            },
             "time": "2013-10-20 06:00:20"
         },
         {
@@ -3597,9 +3600,9 @@
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/zendframework/Component_ZendValidator/zipball/8c23193a617a03dd7ee6c25049132c942f31ec28",
-                "reference": "8c23193a617a03dd7ee6c25049132c942f31ec28",
-                "shasum": ""
+                "url": "https://packages.zendframework.com/composer/zendframework-zend-validator-8c23193a617a03dd7ee6c25049132c942f31ec28-zip-134f25.zip",
+                "reference": "2.2.5",
+                "shasum": "055073c2ae695cc892e7e61e024868eac71a9e14"
             },
             "require": {
                 "php": ">=5.3.3",
@@ -3632,7 +3635,6 @@
                     "Zend\\Validator\\": ""
                 }
             },
-            "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "BSD-3-Clause"
             ],
@@ -3641,6 +3643,9 @@
                 "validator",
                 "zf2"
             ],
+            "support": {
+                "source": "https://github.com/zendframework/Component_ZendValidator/tree/release-2.2.5"
+            },
             "time": "2013-10-20 06:00:22"
         }
     ],

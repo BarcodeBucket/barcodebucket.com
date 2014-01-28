@@ -4,6 +4,7 @@ namespace Barcodebucket\Bundle\NewsagentBundle\Controller;
 use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
 use Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Model\Issue;
 use Zend\Validator\Barcode;
@@ -50,10 +51,7 @@ class WebinforivController
     public function barcodeAction($fullBarcode)
     {
         $gtin = $this->getGtin($fullBarcode);
-
-        if (!$this->barcodeValidator->isValid($gtin) ||($issue = $this->scraper->loadIssue($fullBarcode)) === null) {
-            throw new NotFoundHttpException('Issue not found');
-        }
+        $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
 
         $uuid = $this->barcodeService->upsert($gtin);
 
@@ -62,6 +60,19 @@ class WebinforivController
         $response->setLastModified($issue->getLastUpdate());
 
         return $response;
+    }
+
+    /**
+     * @param  string   $fullBarcode
+     * @return Response
+     */
+    public function pictureAction($fullBarcode)
+    {
+        $gtin = $this->getGtin($fullBarcode);
+        $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
+        $binaryPicture = $this->scraper->loadPicture($issue);
+
+        return new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
     }
 
     /**
@@ -136,5 +147,20 @@ class WebinforivController
     private function getAddon($fullBarcode)
     {
         return substr($fullBarcode, 13);
+    }
+
+    /**
+     * @param $fullBarcode
+     * @param $gtin
+     * @return null|Issue
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     */
+    private function loadIssueOrThrowNotFoundException($fullBarcode, $gtin)
+    {
+        if (!$this->barcodeValidator->isValid($gtin) || ($issue = $this->scraper->loadIssue($fullBarcode)) === null) {
+            throw new NotFoundHttpException('Issue not found');
+        }
+
+        return $issue;
     }
 }
