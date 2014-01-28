@@ -32,6 +32,7 @@
         "doctrine/doctrine-fixtures-bundle": "~2.2",
         "pugx/generator-bundle": "~2.4",
         "knplabs/knp-paginator-bundle": "~2.4",
+        "jms/i18n-routing-bundle": "~1.1",
         "barcodebucket/barcodebucket-core": "@dev",
         "barcodebucket/webinforiv-scraper": "~0.2"
     },

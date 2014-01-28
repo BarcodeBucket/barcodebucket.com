@@ -6,13 +6,16 @@ barcodebucket_main_uuid:
     pattern: /barcode/{uuid}
     defaults: { _controller: barcodebucket_main.controller.barcode:uuidAction }
     requirements: { uuid: '[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}' }
+    options: { i18n: false }
 
 barcodebucket_main_gtin:
     pattern: /barcode/{gtin}
     defaults: { _controller: barcodebucket_main.controller.barcode:gtinAction }
     requirements: { gtin: '[0-9]{8,14}' }
+    options: { i18n: false }
 
 barcodebucket_main_scraper:
     pattern: /scraper/{fullBarcode}
     defaults: { _controller: barcodebucket_main.controller.webinforiv:barcodeAction }
     requirements: { gtin: '[0-9]{18}' }
+    options: { i18n: false }
