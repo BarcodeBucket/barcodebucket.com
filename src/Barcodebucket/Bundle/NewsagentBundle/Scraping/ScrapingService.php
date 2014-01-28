@@ -37,7 +37,7 @@ class ScrapingService implements ScraperInterface
     {
         $issue = $this->getIssueOrNull($fullBarcode);
 
-        if ($this->isIssuedLoadNeeded($issue)) {
+        if ($this->isIssueLoadNeeded($issue)) {
             $issue = $this->scraper->loadIssue($fullBarcode);
             $this->cache->setItem($fullBarcode, serialize($issue));
         }
@@ -117,7 +117,7 @@ class ScrapingService implements ScraperInterface
      * @param $issue
      * @return bool
      */
-    private function isIssuedLoadNeeded($issue)
+    private function isIssueLoadNeeded($issue)
     {
         return !($issue instanceof Issue);
     }
