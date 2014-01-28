@@ -45,11 +45,11 @@ class WebinforivController
     }
 
     /**
-     * @param $fullBarcode
-     * @return \Symfony\Component\HttpFoundation\JsonResponse
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
+     * @param  Request      $request
+     * @param  string       $fullBarcode
+     * @return JsonResponse
      */
-    public function barcodeAction($fullBarcode)
+    public function barcodeAction(Request $request, $fullBarcode)
     {
         $gtin = $this->getGtin($fullBarcode);
         $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
@@ -59,6 +59,7 @@ class WebinforivController
         $response = new JsonResponse($this->issueToArray($uuid, $issue));
         $response->setPublic();
         $response->setLastModified($issue->getLastUpdate());
+        $response->isNotModified($request);
 
         return $response;
     }
