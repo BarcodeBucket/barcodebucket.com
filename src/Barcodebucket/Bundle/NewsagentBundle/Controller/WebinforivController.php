@@ -72,7 +72,11 @@ class WebinforivController
         $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
         $binaryPicture = $this->scraper->loadPicture($issue);
 
-        return new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
+        $response = new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
+        $response->setEtag(sha1($binaryPicture));
+        $response->setPublic();
+
+        return $response;
     }
 
     /**
