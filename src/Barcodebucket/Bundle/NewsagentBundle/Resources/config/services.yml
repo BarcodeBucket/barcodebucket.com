@@ -32,5 +32,4 @@ services:
             - @barcodebucket_newsagent.service.scraping
             - @barcodebucket_main.service.barcode
             - @barcodebucket_main.validator.barcode
-            - @barcodebucket_newsagent.cache
             - @router
