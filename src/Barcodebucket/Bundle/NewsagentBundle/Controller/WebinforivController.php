@@ -3,11 +3,11 @@ namespace Barcodebucket\Bundle\NewsagentBundle\Controller;
 
 use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
 use Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService;
+use Barcodebucket\Scraper\Model\Issue;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
-use WebinforivScraper\Model\Issue;
 use Zend\Validator\Barcode;
 
 /**
