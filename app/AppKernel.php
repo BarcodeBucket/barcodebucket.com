@@ -21,6 +21,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle(),
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
+            new Knp\Bundle\GaufretteBundle\KnpGaufretteBundle(),
             new Barcodebucket\Bundle\MainBundle\BarcodebucketMainBundle(),
             new Barcodebucket\Bundle\NewsagentBundle\BarcodebucketNewsagentBundle(),
         );

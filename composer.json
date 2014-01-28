@@ -34,7 +34,8 @@
         "knplabs/knp-paginator-bundle": "~2.4",
         "jms/i18n-routing-bundle": "~1.1",
         "barcodebucket/barcodebucket-core": "@dev",
-        "barcodebucket/webinforiv-scraper": "~0.2"
+        "barcodebucket/webinforiv-scraper": "~0.2",
+        "knplabs/knp-gaufrette-bundle": "~0.1"
     },
     "require-dev": {
         "phpunit/phpunit": "~3.7"
