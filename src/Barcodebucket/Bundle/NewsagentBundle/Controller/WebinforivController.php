@@ -2,10 +2,11 @@
 namespace Barcodebucket\Bundle\NewsagentBundle\Controller;
 
 use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
+use Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use WebinforivScraper\Model\Issue;
 use WebinforivScraper\Scraper;
-use Zend\Cache\Storage\StorageInterface;
 use Zend\Validator\Barcode;
 
 /**
@@ -15,7 +16,7 @@ use Zend\Validator\Barcode;
 class WebinforivController
 {
     /**
-     * @var Scraper
+     * @var ScrapingService
      */
     private $scraper;
 
@@ -30,23 +31,16 @@ class WebinforivController
     private $barcodeValidator;
 
     /**
-     * @var StorageInterface
+     * @param ScrapingService $scraper
+     * @param BarcodeService  $barcodeService
+     * @param Barcode         $barcodeValidator
      */
-    private $cache;
-
-    /**
-     * @param Scraper          $scraper
-     * @param BarcodeService   $barcodeService
-     * @param Barcode          $barcodeValidator
-     * @param StorageInterface $cache
-     */
-    public function __construct(Scraper $scraper, BarcodeService $barcodeService,
-                                Barcode $barcodeValidator, StorageInterface $cache)
+    public function __construct(ScrapingService $scraper, BarcodeService $barcodeService,
+                                Barcode $barcodeValidator)
     {
         $this->scraper = $scraper;
         $this->barcodeService = $barcodeService;
         $this->barcodeValidator = $barcodeValidator;
-        $this->cache = $cache;
     }
 
     /**
@@ -56,22 +50,17 @@ class WebinforivController
      */
     public function barcodeAction($fullBarcode)
     {
-        $data = $this->cache->getItem($fullBarcode, $success);
+        $gtin = $this->getGtin($fullBarcode);
 
-        $cached = $success && !empty($data);
-        if ($cached) {
-            $data = unserialize($data);
-        } else {
-            $data = $this->loadData($fullBarcode);
-            $this->cache->setItem($fullBarcode, serialize($data));
+        if (!$this->barcodeValidator->isValid($gtin) ||($issue = $this->scraper->loadIssue($fullBarcode)) === null) {
+            throw new NotFoundHttpException('Issue not found');
         }
 
-        $lastUpdated = $data['lastUpdated'];
-        $data['lastUpdated'] = $data['lastUpdated']->format(\DateTime::W3C);
+        $uuid = $this->barcodeService->upsert($gtin);
 
-        $response = new JsonResponse($data);
+        $response = new JsonResponse($this->issueToArray($uuid, $issue));
         $response->setPublic();
-        $response->setLastModified($lastUpdated);
+        $response->setLastModified($issue->getLastUpdate());
 
         return $response;
     }
@@ -86,30 +75,21 @@ class WebinforivController
     }
 
     /**
-     * @param $fullBarcode
+     * @param  string $uuid
+     * @param  Issue  $issue
      * @return array
-     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
-    private function loadData($fullBarcode)
+    private function issueToArray($uuid, Issue $issue)
     {
-        $barcode = substr($fullBarcode, 0, 13);
-        $gtin = '0' . $barcode;
-
-        if (!$this->barcodeValidator->isValid($gtin) ||
-            ($issue = $this->scraper->loadIssue($fullBarcode)) === null
-        ) {
-            throw new NotFoundHttpException('Issue not found');
-        }
-
-        $uuid = $this->barcodeService->upsert($gtin);
+        $fullBarcode = $issue->getBarcode();
 
         return [
             'barcode' => [
                 'uuid' => $uuid,
-                'ean' => $barcode,
-                'gtin' => $gtin,
+                'ean' => $this->getBarcode($fullBarcode),
+                'gtin' => $this->getGtin($fullBarcode),
             ],
-            'addon' => substr($fullBarcode, 13),
+            'addon' => $this->getAddon($fullBarcode),
             'title' => $issue->getTitle(),
             'subtitle' => $issue->getSubtitle(),
             'issueNumber' => $issue->getIssueNumber(),
@@ -128,7 +108,34 @@ class WebinforivController
                 'id' => $issue->getSenderId(),
                 'name' => $issue->getSender()
             ],
-            'lastUpdated' => $issue->getLastUpdate()
+            'lastUpdated' => $issue->getLastUpdate()->format(\DateTime::W3C)
         ];
+    }
+
+    /**
+     * @param  string $fullBarcode
+     * @return string
+     */
+    private function getGtin($fullBarcode)
+    {
+        return '0' . $this->getBarcode($fullBarcode);
+    }
+
+    /**
+     * @param  string $fullBarcode
+     * @return string
+     */
+    private function getBarcode($fullBarcode)
+    {
+        return substr($fullBarcode, 0, 13);
+    }
+
+    /**
+     * @param $fullBarcode
+     * @return string
+     */
+    private function getAddon($fullBarcode)
+    {
+        return substr($fullBarcode, 13);
     }
 }

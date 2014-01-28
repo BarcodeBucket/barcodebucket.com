@@ -3,3 +3,7 @@ barcodebucket_newsagent_scraper:
     defaults: { _controller: barcodebucket_newsagent.controller.webinforiv:barcodeAction }
     requirements: { gtin: '[0-9]{18}' }
     options: { i18n: false }
+
+barcodebucket_newsagent_search_index:
+    pattern: /publications/search/
+    defaults: { _controller: barcodebucket_newsagent.controller.search:indexAction }

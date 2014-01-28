@@ -1,0 +1,10 @@
+{% extends 'BarcodebucketMainBundle::base.html.twig' %}
+{% block content %}
+  <div class="hero-unit">
+    <h1>{{ 'search.hero' | trans() }}</h1>
+    <p>{{ 'search.subtitle' | trans() }}</p>
+    <form id="search-form">
+      <input type="text" name="barcode" id="barcode" placeholder="{{ 'search.placeholder' | trans() }}"/>
+    </form>
+  </div>
+{% endblock content %}
