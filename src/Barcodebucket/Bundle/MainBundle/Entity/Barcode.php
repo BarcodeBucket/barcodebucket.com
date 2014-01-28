@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Class Barcode
  * @package Barcodebucket\Bundle\MainBundle\Entity
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Barcodebucket\Bundle\MainBundle\Entity\BarcodeRepository")
  * @ORM\Table(name="barcodes")
  */
 class Barcode

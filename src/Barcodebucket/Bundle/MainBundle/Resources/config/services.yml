@@ -6,6 +6,8 @@ parameters:
     barcodebucket_main.generator.uuid.class:        Barcodebucket\Bundle\MainBundle\UUID\RhumsaaUUIDGenerator
     barcodebucket_main.goutte.webinforiv.class:     Goutte\Client
     barcodebucket_main.extractor.webinforiv.class:  WebinforivScraper\Scraper
+    barcodebucket_main.repository.barcode.class:    Barcodebucket\Bundle\MainBundle\Entity\BarcodeRepository
+    barcodebucket_main.repository.user.class:       Barcodebucket\Bundle\MainBundle\Entity\UserRepository
     barcodebucket_main.scraper.webinforiv.class:    WebinforivScraper\Scraper
     barcodebucket_main.service.barcode.class:       Barcodebucket\Bundle\MainBundle\Service\BarcodeService
     barcodebucket_main.validator.barcode.class:     Zend\Validator\Barcode
@@ -59,3 +61,15 @@ services:
             - @barcodebucket_main.service.barcode
             - @barcodebucket_main.validator.barcode
             - @barcodebucket_main.cache
+
+    barcodebucket_main.repository.barcode:
+        class: %barcodebucket_main.repository.barcode.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['Barcodebucket\\Bundle\\MainBundle\\Entity\\Barcode']
+
+    barcodebucket_main.repository.user:
+        class: %barcodebucket_main.repository.user.class%
+        factory_service: doctrine.orm.entity_manager
+        factory_method: getRepository
+        arguments: ['Barcodebucket\\Bundle\\MainBundle\\Entity\\User']
