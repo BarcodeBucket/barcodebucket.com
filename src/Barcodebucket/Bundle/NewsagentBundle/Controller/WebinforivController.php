@@ -65,7 +65,7 @@ class WebinforivController
 
     /**
      * @param  Request  $request
-     * @param  string   $fullBarcode
+     * @param $fullBarcode
      * @return Response
      */
     public function pictureAction(Request $request, $fullBarcode)
@@ -74,18 +74,10 @@ class WebinforivController
         $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
         $binaryPicture = $this->scraper->loadPicture($issue);
 
-        $etag = sha1($binaryPicture);
-        $etags = $request->getETags();
-
-        $response = new Response();
-        if (in_array($etag, $etags)) {
-            $response->setStatusCode(Response::HTTP_NOT_MODIFIED);
-        } else {
-            $response->setContent($binaryPicture);
-            $response->headers->set('Content-type', 'image/jpeg');
-            $response->setEtag($etag);
-            $response->setPublic();
-        }
+        $response = new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
+        $response->setEtag(sha1($response->getContent()));
+        $response->setPublic();
+        $response->isNotModified($request);
 
         return $response;
     }
