@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/barcodebucket-core.git",
-                "reference": "dff9a95400eedeed988687624edc0aec16dee6f8"
+                "reference": "ee763783431700d1dab614caed1d34bb8ab99087"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/dff9a95400eedeed988687624edc0aec16dee6f8",
-                "reference": "dff9a95400eedeed988687624edc0aec16dee6f8",
+                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/ee763783431700d1dab614caed1d34bb8ab99087",
+                "reference": "ee763783431700d1dab614caed1d34bb8ab99087",
                 "shasum": ""
             },
             "require-dev": {
@@ -39,7 +39,7 @@
                 }
             ],
             "description": "BarcodeBucket core classes",
-            "time": "2014-01-28 12:04:34"
+            "time": "2014-01-28 12:22:07"
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
