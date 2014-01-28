@@ -5,7 +5,7 @@ barcodebucket_newsagent_scraper:
     options: { i18n: false }
 
 barcodebucket_newsagent_picture:
-    pattern: /picture/{fullBarcode}
+    pattern: /pictures/{fullBarcode}.jpg
     defaults: { _controller: barcodebucket_newsagent.controller.webinforiv:pictureAction }
     requirements: { fullBarcode: '[0-9]{18}' }
     options: { i18n: false }
