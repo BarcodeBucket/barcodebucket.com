@@ -42,13 +42,15 @@ class WebinforivController
      * @param ScrapingService $scraper
      * @param BarcodeService  $barcodeService
      * @param Barcode         $barcodeValidator
+     * @param RouterInterface $router
      */
     public function __construct(ScrapingService $scraper, BarcodeService $barcodeService,
-                                Barcode $barcodeValidator)
+                                Barcode $barcodeValidator, RouterInterface $router)
     {
         $this->scraper = $scraper;
         $this->barcodeService = $barcodeService;
         $this->barcodeValidator = $barcodeValidator;
+        $this->router = $router;
     }
 
     /**
