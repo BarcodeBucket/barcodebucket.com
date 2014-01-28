@@ -56,7 +56,7 @@ class ScrapingService implements ScraperInterface
 
         if ($this->isPictureLoadNeeded($picture)) {
             $picture = $this->scraper->loadPicture($issue);
-            $this->updateCache($picture, $key);
+            $this->updatePictureCache($picture, $key);
         }
 
         return $picture;
@@ -84,7 +84,7 @@ class ScrapingService implements ScraperInterface
      * @param $picture
      * @param $key
      */
-    private function updateCache($picture, $key)
+    private function updatePictureCache($picture, $key)
     {
         if ($picture === null) {
             $this->cache->removeItem($key);
