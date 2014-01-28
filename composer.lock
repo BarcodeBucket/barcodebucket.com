@@ -43,16 +43,16 @@
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
-            "version": "v0.3.0",
+            "version": "v0.4.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/webinforiv-scraper.git",
-                "reference": "c544752d994ffbeb79a5d203272c9cd333ddde46"
+                "reference": "40b03c9fe645d01774e9f39c3614433b8852783d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/c544752d994ffbeb79a5d203272c9cd333ddde46",
-                "reference": "c544752d994ffbeb79a5d203272c9cd333ddde46",
+                "url": "https://api.github.com/repos/BarcodeBucket/webinforiv-scraper/zipball/40b03c9fe645d01774e9f39c3614433b8852783d",
+                "reference": "40b03c9fe645d01774e9f39c3614433b8852783d",
                 "shasum": ""
             },
             "require": {
@@ -78,7 +78,7 @@
                 }
             ],
             "description": "A PHP scraper for www.webinforiv.it",
-            "time": "2014-01-28 12:56:39"
+            "time": "2014-01-28 13:16:15"
         },
         {
             "name": "doctrine/annotations",

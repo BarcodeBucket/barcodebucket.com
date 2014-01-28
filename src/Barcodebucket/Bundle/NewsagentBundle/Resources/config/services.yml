@@ -2,7 +2,7 @@ parameters:
     barcodebucket_newsagent.controller.webinforiv.class: Barcodebucket\Bundle\NewsagentBundle\Controller\WebinforivController
     barcodebucket_newsagent.controller.search.class:     Barcodebucket\Bundle\NewsagentBundle\Controller\SearchController
     barcodebucket_newsagent.service.scraping.class:      Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService
-    barcodebucket_newsagent.scraper.webinforiv.class:    WebinforivScraper\Scraper
+    barcodebucket_newsagent.scraper.webinforiv.class:    Barcodebucket\Scraper\Webinforiv\WebinforivScraper
 
 services:
     barcodebucket_newsagent.scraper.webinforiv:
