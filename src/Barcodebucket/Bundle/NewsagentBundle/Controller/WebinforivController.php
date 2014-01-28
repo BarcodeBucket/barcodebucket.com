@@ -65,15 +65,20 @@ class WebinforivController
     }
 
     /**
-     * @param  Request  $request
+     * @param  Request                                                       $request
      * @param $fullBarcode
      * @return Response
+     * @throws \Symfony\Component\HttpKernel\Exception\NotFoundHttpException
      */
     public function pictureAction(Request $request, $fullBarcode)
     {
         $gtin = $this->getGtin($fullBarcode);
         $issue = $this->loadIssueOrThrowNotFoundException($fullBarcode, $gtin);
         $binaryPicture = $this->scraper->loadPicture($issue);
+
+        if ($binaryPicture === null) {
+            throw new NotFoundHttpException('Picture not found');
+        }
 
         $response = new Response($binaryPicture, 200, ['content-type' => 'image/jpeg']);
         $response->setEtag(sha1($response->getContent()));

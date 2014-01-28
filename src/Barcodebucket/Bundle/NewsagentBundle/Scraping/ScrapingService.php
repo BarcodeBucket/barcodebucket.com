@@ -58,7 +58,12 @@ class ScrapingService implements ScraperInterface
         $picture = $success ? unserialize($serializedPicture) : null;
         if (empty($picture) || !$this->isValidPicture($picture)) {
             $picture = $this->scraper->loadPicture($issue);
-            $this->cache->setItem($key, serialize($picture));
+
+            if ($picture === null) {
+                $this->cache->removeItem($key);
+            } else {
+                $this->cache->setItem($key, serialize($picture));
+            }
         }
 
         return $picture;
