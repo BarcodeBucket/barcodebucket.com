@@ -30,15 +30,14 @@ class ScrapingService implements ScraperInterface
     }
 
     /**
-     * @param $fullBarcode
+     * @param  string     $fullBarcode
      * @return null|Issue
      */
     public function loadIssue($fullBarcode)
     {
-        $serializedIssue = $this->cache->getItem($fullBarcode, $success);
-        $cached = $success && ($issue = unserialize($serializedIssue)) instanceof Issue;
+        $issue = $this->getIssueOrNull($fullBarcode);
 
-        if (!$cached) {
+        if ($this->isIssuedLoadNeeded($issue)) {
             $issue = $this->scraper->loadIssue($fullBarcode);
             $this->cache->setItem($fullBarcode, serialize($issue));
         }
@@ -52,18 +51,12 @@ class ScrapingService implements ScraperInterface
      */
     public function loadPicture(Issue $issue)
     {
-        $key = sha1($issue->getPicture());
-        $serializedPicture = $this->cache->getItem($key, $success);
+        $key = $this->getCacheKeyFromIssue($issue);
+        $picture = $this->getPictureOrNull($key);
 
-        $picture = $success ? unserialize($serializedPicture) : null;
-        if (empty($picture) || !$this->isValidPicture($picture)) {
+        if ($this->isPictureLoadNeeded($picture)) {
             $picture = $this->scraper->loadPicture($issue);
-
-            if ($picture === null) {
-                $this->cache->removeItem($key);
-            } else {
-                $this->cache->setItem($key, serialize($picture));
-            }
+            $this->updateCache($picture, $key);
         }
 
         return $picture;
@@ -76,5 +69,67 @@ class ScrapingService implements ScraperInterface
     private function isValidPicture($picture)
     {
         return preg_match('/DOCTYPE HTML PUBLIC/', $picture) === 0;
+    }
+
+    /**
+     * @param $picture
+     * @return bool
+     */
+    private function isPictureLoadNeeded($picture)
+    {
+        return empty($picture) || !$this->isValidPicture($picture);
+    }
+
+    /**
+     * @param $picture
+     * @param $key
+     */
+    private function updateCache($picture, $key)
+    {
+        if ($picture === null) {
+            $this->cache->removeItem($key);
+        } else {
+            $this->cache->setItem($key, serialize($picture));
+        }
+    }
+
+    /**
+     * @param $key
+     * @return string|null
+     */
+    private function getPictureOrNull($key)
+    {
+        $serializedPicture = $this->cache->getItem($key, $success);
+
+        return $success ? unserialize($serializedPicture) : null;
+    }
+
+    /**
+     * @param  Issue  $issue
+     * @return string
+     */
+    private function getCacheKeyFromIssue(Issue $issue)
+    {
+        return sha1($issue->getPicture());
+    }
+
+    /**
+     * @param $issue
+     * @return bool
+     */
+    private function isIssuedLoadNeeded($issue)
+    {
+        return !($issue instanceof Issue);
+    }
+
+    /**
+     * @param  string     $fullBarcode
+     * @return Issue|null
+     */
+    private function getIssueOrNull($fullBarcode)
+    {
+        $serializedIssue = $this->cache->getItem($fullBarcode, $success);
+
+        return $success ? unserialize($serializedIssue) : null;
     }
 }
