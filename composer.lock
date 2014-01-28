@@ -3,7 +3,7 @@
         "This file locks the dependencies of your project to a known state",
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file"
     ],
-    "hash": "a24f333daddb22933809d91bfd440830",
+    "hash": "6cc47108aa7c7734ce25bf7db33f50c7",
     "packages": [
         {
             "name": "barcodebucket/barcodebucket-core",
@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/barcodebucket-core.git",
-                "reference": "ee763783431700d1dab614caed1d34bb8ab99087"
+                "reference": "1531f7323e40ebd490c7147eba37d6391fced1aa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/ee763783431700d1dab614caed1d34bb8ab99087",
-                "reference": "ee763783431700d1dab614caed1d34bb8ab99087",
+                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/1531f7323e40ebd490c7147eba37d6391fced1aa",
+                "reference": "1531f7323e40ebd490c7147eba37d6391fced1aa",
                 "shasum": ""
             },
             "require-dev": {
@@ -39,7 +39,7 @@
                 }
             ],
             "description": "BarcodeBucket core classes",
-            "time": "2014-01-28 12:22:07"
+            "time": "2014-01-28 12:38:58"
         },
         {
             "name": "barcodebucket/webinforiv-scraper",

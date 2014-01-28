@@ -2,7 +2,7 @@
 
 namespace Barcodebucket\Bundle\MainBundle\Entity;
 
-use BarcodeBucket\Model\Barcode as BaseBarcode;
+use Barcodebucket\Model\Barcode as BaseBarcode;
 use Doctrine\ORM\Mapping as ORM;
 
 /**

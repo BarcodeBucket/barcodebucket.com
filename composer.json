@@ -67,6 +67,7 @@
         }
     ],
     "extra": {
+        "symfony-assets-install": "symlink",
         "incenteev-parameters": {
             "file": "app/config/parameters.yml"
         }
