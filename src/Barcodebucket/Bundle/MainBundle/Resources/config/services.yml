@@ -33,7 +33,7 @@ services:
         class: %barcodebucket_main.service.barcode.class%
         arguments:
             - @event_dispatcher
-            - @database_connection
+            - @doctrine.orm.entity_manager
             - @barcodebucket_main.generator.uuid
 
     barcodebucket_main.controller.barcode:
@@ -61,15 +61,3 @@ services:
             - @barcodebucket_main.service.barcode
             - @barcodebucket_main.validator.barcode
             - @barcodebucket_main.cache
-
-    barcodebucket_main.repository.barcode:
-        class: %barcodebucket_main.repository.barcode.class%
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
-        arguments: ['Barcodebucket\\Bundle\\MainBundle\\Entity\\Barcode']
-
-    barcodebucket_main.repository.user:
-        class: %barcodebucket_main.repository.user.class%
-        factory_service: doctrine.orm.entity_manager
-        factory_method: getRepository
-        arguments: ['Barcodebucket\\Bundle\\MainBundle\\Entity\\User']

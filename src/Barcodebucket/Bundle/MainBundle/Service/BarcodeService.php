@@ -2,10 +2,12 @@
 
 namespace Barcodebucket\Bundle\MainBundle\Service;
 
+use Barcodebucket\Bundle\MainBundle\Entity\BarcodeRepository;
 use Barcodebucket\Bundle\MainBundle\Event\BarcodeCreatedEvent;
 use Barcodebucket\Bundle\MainBundle\UUID\UUIDGeneratorInterface;
 use BarcodeBucket\Model\Barcode;
-use Doctrine\DBAL\Connection;
+use Doctrine\Common\Persistence\ObjectManager;
+use Doctrine\ORM\EntityManager;
 use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 class BarcodeService
@@ -16,9 +18,14 @@ class BarcodeService
     private $dispatcher;
 
     /**
-     * @var \Doctrine\DBAL\Connection
+     * @var EntityManager
      */
-    private $db;
+    private $objectManager;
+
+    /**
+     * @var BarcodeRepository
+     */
+    private $repository;
 
     /**
      * @var UUIDGeneratorInterface
@@ -27,50 +34,61 @@ class BarcodeService
 
     /**
      * @param EventDispatcherInterface $dispatcher
-     * @param Connection               $db
+     * @param EntityManager            $objectManager
      * @param UUIDGeneratorInterface   $UUIDGenerator
      */
-    public function __construct(EventDispatcherInterface $dispatcher, Connection $db, UUIDGeneratorInterface $UUIDGenerator)
+    public function __construct(EventDispatcherInterface $dispatcher, EntityManager $objectManager,
+                                UUIDGeneratorInterface $UUIDGenerator)
     {
-        $this->dispatcher = $dispatcher;
-        $this->db = $db;
+        $this->dispatcher    = $dispatcher;
+        $this->objectManager = $objectManager;
+        $this->repository    = $objectManager->getRepository('Barcodebucket\\Bundle\\MainBundle\\Entity\\Barcode');
         $this->UUIDGenerator = $UUIDGenerator;
     }
 
+    /**
+     * @param $uuid
+     * @return string|null
+     */
     public function getBarcode($uuid)
     {
-        $sql = 'SELECT barcode FROM barcodes WHERE uuid = ?';
+        $barcode = $this->repository->find($uuid);
 
-        return $this->db->fetchColumn($sql, array($uuid));
+        if ($barcode != null) {
+            return $barcode->getBarcode();
+        }
+
+        return null;
     }
 
+    /**
+     * @param $gtin
+     * @return string
+     */
     public function upsert($gtin)
     {
         $this
-            ->db
+            ->objectManager
             ->beginTransaction();
         ;
 
-        $sql = 'SELECT uuid FROM barcodes WHERE barcode = ?';
-        $uuid = $this->db->fetchColumn($sql, array($gtin));
+        $barcode = $this->repository->findOneByBarcode($gtin);
 
-        if (false === $uuid) {
-            $this
-                ->db
-                ->executeUpdate('INSERT INTO barcodes (uuid, barcode) VALUES (?,?)', array(
-                    $uuid = $this->UUIDGenerator->generate(),
-                    $gtin
-                ))
-            ;
+        if (null === $barcode) {
+            $uuid = $this->UUIDGenerator->generate();
+
+            $barcode = new Barcode($uuid, $gtin);
+            $this->objectManager->persist($barcode);
+            $this->objectManager->flush($barcode);
 
             $this->dispatcher->dispatch('barcode.created', new BarcodeCreatedEvent(new Barcode($uuid, $gtin)));
         }
 
         $this
-            ->db
+            ->objectManager
             ->commit()
         ;
 
-        return $uuid;
+        return $barcode->getUuid();
     }
 }
