@@ -70,8 +70,6 @@ class ScrapingService implements ScraperInterface
      */
     private function isValidPicture($picture)
     {
-        $resource = @imagecreatefromstring($picture);
-
-        return is_resource($resource);
+        return preg_match('/DOCTYPE HTML PUBLIC/', $picture) === 0;
     }
 }
