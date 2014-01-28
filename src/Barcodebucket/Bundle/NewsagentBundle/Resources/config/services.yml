@@ -1,0 +1,17 @@
+parameters:
+    barcodebucket_newsagent.controller.webinforiv.class: Barcodebucket\Bundle\NewsagentBundle\Controller\WebinforivController
+    barcodebucket_newsagent.scraper.webinforiv.class:    WebinforivScraper\Scraper
+
+services:
+    barcodebucket_newsagent.scraper.webinforiv:
+        class: %barcodebucket_newsagent.scraper.webinforiv.class%
+        arguments:
+            - @barcodebucket_main.goutte.webinforiv
+
+    barcodebucket_newsagent.controller.webinforiv:
+        class: %barcodebucket_newsagent.controller.webinforiv.class%
+        arguments:
+            - @barcodebucket_newsagent.scraper.webinforiv
+            - @barcodebucket_main.service.barcode
+            - @barcodebucket_main.validator.barcode
+            - @barcodebucket_main.cache

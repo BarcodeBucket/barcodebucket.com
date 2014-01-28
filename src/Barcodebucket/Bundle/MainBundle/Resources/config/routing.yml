@@ -13,9 +13,3 @@ barcodebucket_main_gtin:
     defaults: { _controller: barcodebucket_main.controller.barcode:gtinAction }
     requirements: { gtin: '[0-9]{8,14}' }
     options: { i18n: false }
-
-barcodebucket_main_scraper:
-    pattern: /scraper/{fullBarcode}
-    defaults: { _controller: barcodebucket_main.controller.webinforiv:barcodeAction }
-    requirements: { gtin: '[0-9]{18}' }
-    options: { i18n: false }

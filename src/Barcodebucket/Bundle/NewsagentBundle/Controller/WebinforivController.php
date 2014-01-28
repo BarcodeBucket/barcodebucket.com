@@ -1,5 +1,5 @@
 <?php
-namespace Barcodebucket\Bundle\MainBundle\Controller;
+namespace Barcodebucket\Bundle\NewsagentBundle\Controller;
 
 use Barcodebucket\Bundle\MainBundle\Service\BarcodeService;
 use Symfony\Component\HttpFoundation\JsonResponse;

@@ -22,6 +22,7 @@ class AppKernel extends Kernel
             new JMS\I18nRoutingBundle\JMSI18nRoutingBundle(),
             new JMS\TranslationBundle\JMSTranslationBundle(),
             new Barcodebucket\Bundle\MainBundle\BarcodebucketMainBundle(),
+            new Barcodebucket\Bundle\NewsagentBundle\BarcodebucketNewsagentBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
