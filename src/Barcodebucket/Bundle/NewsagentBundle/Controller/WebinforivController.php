@@ -8,6 +8,8 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
+use Symfony\Component\Routing\RouterInterface;
 use Zend\Validator\Barcode;
 
 /**
@@ -30,6 +32,11 @@ class WebinforivController
      * @var \Zend\Validator\Barcode
      */
     private $barcodeValidator;
+
+    /**
+     * @var RouterInterface
+     */
+    private $router;
 
     /**
      * @param ScrapingService $scraper
@@ -89,12 +96,17 @@ class WebinforivController
     }
 
     /**
-     * @param $issue
-     * @return string
+     * @param  Issue       $issue
+     * @return null|string
      */
-    private function getPictureForIssue($issue)
+    private function getPictureForIssue(Issue $issue)
     {
-        return $issue->getPicture();
+        if (strlen($issue->getPicture()) === 0) {
+            return null;
+        }
+
+        return $this->router->generate('barcodebucket_newsagent_picture', ['fullBarcode' => $issue->getBarcode()],
+            UrlGeneratorInterface::ABSOLUTE_URL);
     }
 
     /**
