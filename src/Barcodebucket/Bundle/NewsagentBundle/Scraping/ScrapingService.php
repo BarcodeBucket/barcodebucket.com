@@ -56,11 +56,22 @@ class ScrapingService implements ScraperInterface
         $serializedPicture = $this->cache->getItem($key, $success);
 
         $picture = $success ? unserialize($serializedPicture) : null;
-        if (empty($picture)) {
+        if (empty($picture) || !$this->isValidPicture($picture)) {
             $picture = $this->scraper->loadPicture($issue);
             $this->cache->setItem($key, serialize($picture));
         }
 
         return $picture;
+    }
+
+    /**
+     * @param $picture
+     * @return bool
+     */
+    private function isValidPicture($picture)
+    {
+        $resource = @imagecreatefromstring($picture);
+
+        return is_resource($resource);
     }
 }
