@@ -3,13 +3,13 @@
 namespace Barcodebucket\Bundle\NewsagentBundle\Scraping;
 
 use WebinforivScraper\Model\Issue;
-use WebinforivScraper\Scraper;
+use WebinforivScraper\ScraperInterface;
 use Zend\Cache\Storage\StorageInterface;
 
-class ScrapingService
+class ScrapingService implements ScraperInterface
 {
     /**
-     * @var Scraper
+     * @var ScraperInterface
      */
     private $scraper;
 
@@ -19,10 +19,10 @@ class ScrapingService
     private $cache;
 
     /**
-     * @param Scraper          $scraper
+     * @param ScraperInterface $scraper
      * @param StorageInterface $cache
      */
-    public function __construct(Scraper $scraper, StorageInterface $cache)
+    public function __construct(ScraperInterface $scraper, StorageInterface $cache)
     {
         $this->scraper = $scraper;
         $this->cache = $cache;
