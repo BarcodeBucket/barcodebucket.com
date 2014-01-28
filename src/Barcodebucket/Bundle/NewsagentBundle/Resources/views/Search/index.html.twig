@@ -1,10 +1,73 @@
 {% extends 'BarcodebucketMainBundle::base.html.twig' %}
 {% block content %}
   <div class="hero-unit">
-    <h1>{{ 'search.hero' | trans() }}</h1>
-    <p>{{ 'search.subtitle' | trans() }}</p>
-    <form id="search-form">
-      <input type="text" name="barcode" id="barcode" placeholder="{{ 'search.placeholder' | trans() }}"/>
-    </form>
+      <h1>{{ 'search.hero' | trans() }}</h1>
+      <p>{{ 'search.subtitle' | trans() }}</p>
+      <form id="search-form">
+          <input type="text" name="barcode" id="barcode" placeholder="{{ 'search.placeholder' | trans() }}"/>
+      </form>
+      {% if issue %}
+          <h3>{{ 'issue.found' | trans() }}</h3>
+          <div class="container-fluid">
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.barcode' | trans() }}</div>
+                  <div class="span10">{{ issue.barcode }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.title' | trans() }}</div>
+                  <div class="span10">{{ issue.title }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.subtitle' | trans() }}</div>
+                  <div class="span10">{{ issue.subtitle }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.sender' | trans() }}</div>
+                  <div class="span10">{{ issue.senderId }} - {{ issue.sender }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.number' | trans() }}</div>
+                  <div class="span10">{{ issue.issueNumber }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.price' | trans() }}</div>
+                  <div class="span10">{{ issue.price }} €</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.terms.tax_rate' | trans() }}</div>
+                  <div class="span10">{{ issue.taxRate * 100 }} %</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.terms.discount' | trans() }}</div>
+                  <div class="span10">{{ issue.discountCode }} - {{ issue.discount * 100 }} %</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.terms.folding_fee' | trans() }}</div>
+                  <div class="span10">{{ issue.foldingFee }} €</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.terms.waybill_price' | trans() }}</div>
+                  <div class="span10">{{ issue.waybillPrice }} €</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.terms.consignment' | trans() }}</div>
+                  <div class="span10">{{ issue.consignment ? 'issue.terms.consignment_yes' : 'issue.terms.consignment_no' | trans() }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.date' | trans() }}</div>
+                  <div class="span10">{{ issue.date | date('Y-m-d') }}</div>
+              </div>
+              <div class="row-fluid">
+                  <div class="span2">{{ 'issue.last_update' | trans() }}</div>
+                  <div class="span10">{{ issue.lastUpdate | date }}</div>
+              </div>
+              {% if(issue.picture) %}
+                  <div class="row-fluid">
+                      <div class="span2">{{ 'issue.picture' | trans() }}</div>
+                      <div class="span10"><a href="{{ issue.picture }}" target="_blank">{{ 'issue.picture_show' | trans() }}</a></div>
+                  </div>
+              {% endif %}
+          </div>
+  {% endif %}
   </div>
 {% endblock content %}

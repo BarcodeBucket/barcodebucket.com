@@ -24,7 +24,7 @@ services:
         arguments:
             - @templating
             - @router
-            - @barcodebucket_newsagent.scraper.webinforiv
+            - @barcodebucket_newsagent.service.scraping
 
     barcodebucket_newsagent.controller.webinforiv:
         class: %barcodebucket_newsagent.controller.webinforiv.class%

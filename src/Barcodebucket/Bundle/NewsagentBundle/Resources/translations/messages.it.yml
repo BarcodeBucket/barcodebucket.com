@@ -1,4 +1,25 @@
 search:
-  hero: Cerca testate
-  subtitle: Ricerca rapida ed efficace
-  placeholder: Inserisci un barcode a 18 cifre (EAN + addon)
+    hero: Cerca testate
+    subtitle: Ricerca rapida ed efficace
+    placeholder: Inserisci un barcode a 18 cifre (EAN + addon)
+
+issue:
+    found: Numero trovato
+    barcode: Codice a barre
+    title: Titolo
+    subtitle: Sottotitolo
+    sender: Mittente
+    number: Numero
+    price: Prezzo
+    terms:
+        tax_rate: Defiscalizzazione
+        discount: Sconto
+        folding_fee: Compenso compiegamento
+        waybill_price: Prezzo bolla
+        consignment: Conto deposito
+        consignment_yes: Sì
+        consignment_no: No
+    date: Data di uscita
+    last_update: Ultimo aggiornamento
+    picture: Immagine
+    picture_show: Link

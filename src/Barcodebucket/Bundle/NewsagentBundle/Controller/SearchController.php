@@ -49,10 +49,10 @@ class SearchController
         $barcode = $request->query->get('barcode');
 
         $issue = null;
-        if (!empty($barcode) && preg_match('/^[0-9]{18}$', $barcode) > 0) {
+        if (!empty($barcode) && preg_match('/^[0-9]{18}$/', $barcode) > 0) {
             $issue = $this->scraper->loadIssue($barcode);
         }
 
-        return new Response($this->templating->render('BarcodebucketNewsagentBundle:Search:index.html.twig'), ['issue' => $issue]);
+        return new Response($this->templating->render('BarcodebucketNewsagentBundle:Search:index.html.twig', ['issue' => $issue]));
     }
 }

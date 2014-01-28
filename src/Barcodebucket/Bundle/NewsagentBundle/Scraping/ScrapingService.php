@@ -28,6 +28,10 @@ class ScrapingService
         $this->cache = $cache;
     }
 
+    /**
+     * @param $fullBarcode
+     * @return null|Issue
+     */
     public function loadIssue($fullBarcode)
     {
         $serializedIssue = $this->cache->getItem($fullBarcode, $success);

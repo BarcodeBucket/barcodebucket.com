@@ -1,4 +1,25 @@
 search:
-  hero: Search for publications
-  subtitle: It's blazing fast!
-  placeholder: Enter a 18 digit barcode (EAN + addon)
+    hero: Search for publications
+    subtitle: It's blazing fast!
+    placeholder: Enter a 18 digit barcode (EAN + addon)
+
+issue:
+    found: Issue found
+    barcode: Barcode
+    title: Title
+    subtitle: Subtitle
+    sender: Sender
+    number: Number
+    price: Price
+    terms:
+        tax_rate: Detaxing rate
+        discount: Discount
+        folding_fee: Folding fee
+        waybill_price: Waybill price
+        consignment: Consignment
+        consignment_yes: Yes
+        consignment_no: No
+    date: Issue date
+    last_update: Last update
+    picture: Picture
+    picture_show: Link
