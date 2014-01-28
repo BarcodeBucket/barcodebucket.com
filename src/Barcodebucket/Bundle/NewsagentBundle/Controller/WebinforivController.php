@@ -6,7 +6,6 @@ use Barcodebucket\Bundle\NewsagentBundle\Scraping\ScrapingService;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use WebinforivScraper\Model\Issue;
-use WebinforivScraper\Scraper;
 use Zend\Validator\Barcode;
 
 /**
