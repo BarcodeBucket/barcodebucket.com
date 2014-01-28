@@ -5,6 +5,7 @@ search:
 
 issue:
     found: Issue found
+    not_found: Issue not found
     barcode: Barcode
     title: Title
     subtitle: Subtitle

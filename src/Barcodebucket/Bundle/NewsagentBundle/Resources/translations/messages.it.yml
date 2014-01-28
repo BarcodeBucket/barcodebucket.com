@@ -5,6 +5,7 @@ search:
 
 issue:
     found: Numero trovato
+    not_found: Numero non trovato
     barcode: Codice a barre
     title: Titolo
     subtitle: Sottotitolo
