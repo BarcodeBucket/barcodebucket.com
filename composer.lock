@@ -11,12 +11,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BarcodeBucket/barcodebucket-core.git",
-                "reference": "27161c4bd4163247b55cd05e438f73ee802a56fc"
+                "reference": "dff9a95400eedeed988687624edc0aec16dee6f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/27161c4bd4163247b55cd05e438f73ee802a56fc",
-                "reference": "27161c4bd4163247b55cd05e438f73ee802a56fc",
+                "url": "https://api.github.com/repos/BarcodeBucket/barcodebucket-core/zipball/dff9a95400eedeed988687624edc0aec16dee6f8",
+                "reference": "dff9a95400eedeed988687624edc0aec16dee6f8",
                 "shasum": ""
             },
             "require-dev": {
@@ -39,7 +39,7 @@
                 }
             ],
             "description": "BarcodeBucket core classes",
-            "time": "2013-11-25 15:10:01"
+            "time": "2014-01-28 12:04:34"
         },
         {
             "name": "barcodebucket/webinforiv-scraper",
@@ -2484,16 +2484,16 @@
         },
         {
             "name": "rhumsaa/uuid",
-            "version": "2.6.0",
+            "version": "2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ramsey/uuid.git",
-                "reference": "806f46722fcd2a5b151a94471d0d5d63d519e1bc"
+                "reference": "ecbc32913fca757b5225213f5de02d1101e4e645"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ramsey/uuid/zipball/806f46722fcd2a5b151a94471d0d5d63d519e1bc",
-                "reference": "806f46722fcd2a5b151a94471d0d5d63d519e1bc",
+                "url": "https://api.github.com/repos/ramsey/uuid/zipball/ecbc32913fca757b5225213f5de02d1101e4e645",
+                "reference": "ecbc32913fca757b5225213f5de02d1101e4e645",
                 "shasum": ""
             },
             "require": {
@@ -2544,7 +2544,7 @@
                 "identifier",
                 "uuid"
             ],
-            "time": "2014-01-17 23:40:22"
+            "time": "2014-01-28 00:25:52"
         },
         {
             "name": "sensio/distribution-bundle",

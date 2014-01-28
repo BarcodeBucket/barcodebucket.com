@@ -52,10 +52,13 @@ class BarcodeService
      */
     public function getBarcode($uuid)
     {
+        /**
+         * @var Barcode $barcode
+         */
         $barcode = $this->repository->find($uuid);
 
         if ($barcode != null) {
-            return $barcode->getBarcode();
+            return $barcode->getGtin();
         }
 
         return null;
@@ -72,7 +75,10 @@ class BarcodeService
             ->beginTransaction();
         ;
 
-        $barcode = $this->repository->findOneByBarcode($gtin);
+        /**
+         * @var Barcode $barcode
+         */
+        $barcode = $this->repository->findOneByGtin($gtin);
 
         if (null === $barcode) {
             $uuid = $this->UUIDGenerator->generate();

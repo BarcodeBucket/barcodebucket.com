@@ -2,6 +2,7 @@
 
 namespace Barcodebucket\Bundle\MainBundle\Entity;
 
+use BarcodeBucket\Model\Barcode as BaseBarcode;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -10,48 +11,27 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="Barcodebucket\Bundle\MainBundle\Entity\BarcodeRepository")
  * @ORM\Table(name="barcodes")
  */
-class Barcode
+class Barcode extends BaseBarcode
 {
     /**
      * @ORM\Id
      * @ORM\Column(type="string", length=36)
      * @var string
      */
-    private $uuid;
+    protected $uuid;
 
     /**
-     * @ORM\Column(type="string", length=14, unique=true)
+     * @ORM\Column(name="barcode", type="string", length=14, unique=true)
      * @var string
      */
-    private $barcode;
+    protected $gtin;
 
     /**
      * @param string $uuid
-     * @param string $barcode
+     * @param string $gtin
      */
-    public function __construct($uuid = null, $barcode = null)
+    public function __construct($uuid = null, $gtin = null)
     {
-        $this->uuid = $uuid;
-        $this->barcode = $barcode;
-    }
-
-    /**
-     * Get barcode
-     *
-     * @return string
-     */
-    public function getBarcode()
-    {
-        return $this->barcode;
-    }
-
-    /**
-     * Get uuid
-     *
-     * @return string
-     */
-    public function getUuid()
-    {
-        return $this->uuid;
+        parent::__construct($uuid, $gtin);
     }
 }
